@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DJ Harmonic — the Camelot wheel for mixing in key</title>
-<meta name="description" content="DJ Harmonic reads the key of a track and lights up the keys that mix with it, on a Camelot wheel you can read at a glance. Six mixing rules, quick or thorough analysis, phone and tablet. Everything on your device.">
+<title>DJ Harmonic — das Camelot-Rad zum harmonischen Mixen</title>
+<meta name="description" content="DJ Harmonic liest die Tonart eines Titels und lässt die aufleuchten, die dazu passen — auf einem Camelot-Rad, das man auf einen Blick liest. Sechs Mix-Regeln, schnelle oder gründliche Analyse, Telefon und Tablet. Alles auf Ihrem Gerät.">
 <link rel="icon" href="assets/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="DJ Harmonic — the Camelot wheel for mixing in key">
-<meta property="og:description" content="Read the key of a track and see what mixes with it. Six rules, two notations, quick or thorough analysis. Everything on your device.">
+<meta property="og:title" content="DJ Harmonic — das Camelot-Rad zum harmonischen Mixen">
+<meta property="og:description" content="Die Tonart eines Titels erfahren und sehen, was dazu passt. Sechs Regeln, zwei Notationen, schnelle oder gründliche Analyse. Alles auf Ihrem Gerät.">
 <meta property="og:image" content="assets/icon.png">
 <meta name="theme-color" content="#100E14">
 
@@ -21,70 +21,6 @@
 <link rel="alternate" hreflang="de" href="de.html">
 <link rel="alternate" hreflang="x-default" href="index.html">
 
-<script>
-(function () {
-  var PAGES = { en: 'index.html', it: 'it.html', fr: 'fr.html', es: 'es.html', de: 'de.html' };
-
-  /* A quale delle nostre cinque somiglia di piu' una lingua che non abbiamo.
-     Non un albero genealogico ma una valutazione pratica: quanto di un testo
-     chi la parla riesce davvero a cavare. Le scandinave mancano di proposito —
-     li' l'inglese si capisce meglio del tedesco, e senza una voce qui e' li'
-     che vanno a finire. */
-  var AFFINITY = {
-    pt: 'es', gl: 'es', ca: 'es', ast: 'es', an: 'es', ext: 'es', eu: 'es',
-    qu: 'es', gn: 'es', ay: 'es',
-    ro: 'it', co: 'it', sc: 'it', scn: 'it', nap: 'it', vec: 'it', lmo: 'it',
-    pms: 'it', lij: 'it', fur: 'it', lld: 'it', rm: 'it', mt: 'it',
-    oc: 'fr', br: 'fr', wa: 'fr', ht: 'fr', mg: 'fr', wo: 'fr', ln: 'fr',
-    rw: 'fr', sg: 'fr',
-    nl: 'de', af: 'de', fy: 'de', nds: 'de', lb: 'de', gsw: 'de', bar: 'de',
-    yi: 'de'
-  };
-
-  var KEY = 'djharmonic.lang';
-
-  function remember(code) { try { localStorage.setItem(KEY, code); } catch (e) {} }
-  function remembered() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-
-  function base(tag) { return String(tag).toLowerCase().split('-')[0]; }
-
-  function resolve(list) {
-    var i, code;
-
-    // Due passate e non una: chi ha impostato olandese e poi inglese vuole
-    // l'inglese vero, non il tedesco che e' soltanto affine alla sua prima
-    // scelta.
-    for (i = 0; i < list.length; i++) {
-      code = base(list[i]);
-      if (PAGES[code]) return code;
-    }
-    for (i = 0; i < list.length; i++) {
-      code = AFFINITY[base(list[i])];
-      if (code) return code;
-    }
-    return 'en';
-  }
-
-  // ?lang=xx vuol dire che questa pagina l'ha chiesta una persona, dal menu
-  // delle lingue di una pagina tradotta. Si conserva e non si scavalca mai.
-  var asked = (location.search.match(/[?&]lang=([a-zA-Z-]+)/) || [])[1];
-  if (asked && PAGES[base(asked)]) {
-    remember(base(asked));
-    if (window.history && history.replaceState) {
-      history.replaceState(null, '', location.pathname + location.hash);
-    }
-    return;
-  }
-
-  var chosen = remembered() || resolve(navigator.languages || [navigator.language || 'en']);
-  if (!PAGES[chosen] || chosen === 'en') return;
-
-  // replace(), non assign(): un rimando nella cronologia intrappolerebbe il
-  // tasto indietro.
-  location.replace(PAGES[chosen] + location.search + location.hash);
-})();
-</script>
-
 <link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body id="top">
@@ -94,30 +30,30 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="32" height="32"> DJ Harmonic</a>
     <nav class="navlinks">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#mixing">Mixing rules</a>
-      <a href="#devices">Phone &amp; tablet</a>
+      <a href="#how">So funktioniert’s</a>
+      <a href="#features">Funktionen</a>
+      <a href="#mixing">Mix-Regeln</a>
+      <a href="#devices">Telefon und Tablet</a>
     </nav>
 
     <details class="lang">
       <summary title="Language">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="globe" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg>
-        EN
+        DE
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <div class="lang__menu">
-        <a href="index.html?lang=en" hreflang="en" aria-current="page">English <span>en</span></a>
+        <a href="index.html?lang=en" hreflang="en">English <span>en</span></a>
         <a href="it.html?lang=it" hreflang="it">Italiano <span>it</span></a>
         <a href="fr.html?lang=fr" hreflang="fr">Français <span>fr</span></a>
         <a href="es.html?lang=es" hreflang="es">Español <span>es</span></a>
-        <a href="de.html?lang=de" hreflang="de">Deutsch <span>de</span></a>
+        <a href="de.html?lang=de" hreflang="de" aria-current="page">Deutsch <span>de</span></a>
       </div>
     </details>
 
     <a class="play play--sm" href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3A1.6 1.6 0 0 0 3 3.6v16.8c0 .53.2 1 .6 1.3l.1.08 9.4-9.4v-.22L3.6 2.3z" fill="#00A0FF"/><path d="M16.3 15.5l-3.2-3.1v-.23l3.2-3.15.08.05 3.72 2.12c1.06.6 1.06 1.6 0 2.2l-3.72 2.11-.08z" fill="#FFBC00"/><path d="M16.38 15.45L13.1 12.28l-9.5 9.5c.35.37.93.42 1.58.05l11.2-6.38" fill="#FF3A44"/><path d="M16.38 9.1L5.18 2.73c-.65-.37-1.23-.32-1.58.05l9.5 9.5 3.28-3.18z" fill="#00D26A"/></svg>
-        <span class="txt"><small>Get it on</small><strong>Google Play</strong></span>
+        <span class="txt"><small>Jetzt bei</small><strong>Google Play</strong></span>
       </a>
   </div>
 </header>
@@ -127,32 +63,32 @@
   <div class="hero__bg"><img src="assets/tablet-wheel.png" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div>
-      <span class="eyebrow">for DJs who mix in key</span>
-      <h1>Know the key <em>before you drop the track.</em></h1>
-      <p class="lead">DJ Harmonic reads the key of a track and lights up the ones that will sit next to it, on a Camelot wheel you can read at a glance. Everything happens on your phone: no account, no upload, nothing to sign up for.</p>
+      <span class="eyebrow">für DJs, die harmonisch mixen</span>
+      <h1>Die Tonart kennen, <em>bevor der Titel läuft.</em></h1>
+      <p class="lead">DJ Harmonic liest die Tonart eines Titels und lässt die aufleuchten, die sich daneben legen werden — auf einem Camelot-Rad, das man auf einen Blick liest. Alles geschieht auf dem Telefon: kein Konto, nichts hochzuladen, keine Anmeldung.</p>
 
       <div class="cta">
         <a class="play" href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3A1.6 1.6 0 0 0 3 3.6v16.8c0 .53.2 1 .6 1.3l.1.08 9.4-9.4v-.22L3.6 2.3z" fill="#00A0FF"/><path d="M16.3 15.5l-3.2-3.1v-.23l3.2-3.15.08.05 3.72 2.12c1.06.6 1.06 1.6 0 2.2l-3.72 2.11-.08z" fill="#FFBC00"/><path d="M16.38 15.45L13.1 12.28l-9.5 9.5c.35.37.93.42 1.58.05l11.2-6.38" fill="#FF3A44"/><path d="M16.38 9.1L5.18 2.73c-.65-.37-1.23-.32-1.58.05l9.5 9.5 3.28-3.18z" fill="#00D26A"/></svg>
-        <span class="txt"><small>Get it on</small><strong>Google Play</strong></span>
+        <span class="txt"><small>Jetzt bei</small><strong>Google Play</strong></span>
       </a>
         <a class="ghost" href="#how">
-          See how it works
+          Sehen, wie es funktioniert
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
 
       <div class="chips">
-        <span class="chip"><b>24</b> keys on one wheel</span>
-        <span class="chip"><b>6</b> rules for the mix</span>
-        <span class="chip">Works <b>offline</b>, no account</span>
-        <span class="chip"><b>5</b> languages</span>
+        <span class="chip"><b>24</b> Tonarten auf einem Rad</span>
+        <span class="chip"><b>6</b> Regeln für den Mix</span>
+        <span class="chip">Läuft <b>offline</b>, ohne Konto</span>
+        <span class="chip"><b>5</b> Sprachen</span>
       </div>
     </div>
 
     <div class="hero__device">
       <div class="phone">
-          <img src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic on a phone: the Camelot wheel with 12A selected, the compatible sectors lit and the rest grey.">
+          <img src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic auf einem Telefon: das Camelot-Rad mit gewähltem 12A, die passenden Sektoren hell und die übrigen grau.">
         </div>
     </div>
   </div>
@@ -162,9 +98,9 @@
 <section class="band band--alt" id="how">
   <div class="wrap">
     <div class="sechead reveal">
-      <span class="eyebrow">how it works</span>
-      <h2>Three moves, and you know what comes next.</h2>
-      <p>Nothing to set up before you start: the button in the middle of the wheel is already the file picker.</p>
+      <span class="eyebrow">so funktioniert’s</span>
+      <h2>Drei Handgriffe, und Sie wissen, was als Nächstes kommt.</h2>
+      <p>Nichts einzurichten, bevor es losgeht: der Knopf in der Mitte des Rads ist schon die Dateiauswahl.</p>
     </div>
 
     <div class="stepsgrid">
@@ -176,8 +112,8 @@
             <div class="step__line"></div>
           </div>
           <div class="step__body">
-            <h3>Hand it a track</h3>
-            <p>Tap the button at the centre of the wheel and pick a file from the device — mp3, m4a, wav or flac. Say whether you want it quick, on a slice of the track, or thorough, on all of it. A ring counts the work down while the wheel waits.</p>
+            <h3>Geben Sie ihm einen Titel</h3>
+            <p>Tippen Sie auf den Knopf in der Mitte des Rads und wählen Sie eine Datei auf dem Gerät — mp3, m4a, wav oder flac. Dann sagen Sie, ob es schnell gehen soll, auf einem Ausschnitt des Titels, oder gründlich, auf dem Ganzen. Ein Ring zählt die Arbeit herunter, während das Rad wartet.</p>
           </div>
         </div>
 
@@ -187,8 +123,8 @@
             <div class="step__line"></div>
           </div>
           <div class="step__body">
-            <h3>Read the key it found</h3>
-            <p>The wheel lights back up on the sector it landed on, ringed in red. The panel underneath carries the Camelot code, the chord name, and a mark saying which of the two analyses got there — tap the quick one and it goes thorough without starting again.</p>
+            <h3>Lesen Sie die gefundene Tonart</h3>
+            <p>Das Rad leuchtet wieder auf dem Sektor auf, in dem es gelandet ist, rot umrandet. Das Feld darunter trägt den Camelot-Code, den Akkordnamen und ein Zeichen dafür, welche der beiden Analysen dorthin gelangt ist — tippen Sie auf die schnelle, und sie wird gründlich, ohne von vorn zu beginnen.</p>
           </div>
         </div>
 
@@ -198,9 +134,9 @@
             <div class="step__line"></div>
           </div>
           <div class="step__body">
-            <h3>See what mixes with it</h3>
-            <p>Pick one of the six rules and the wheel keeps lit only the keys that rule allows, dimming everything else. Close the lock and a key that does not mix cannot even be chosen.</p>
-            <div class="step__meta"><span><i class="dot" style="background:#ACFBFF"></i> the key of the track</span><span><i class="dot" style="background:#AB88FF"></i> mixes with it</span><span><i class="dot" style="background:#3A3742"></i> out of key</span></div>
+            <h3>Sehen Sie, was dazu passt</h3>
+            <p>Wählen Sie eine der sechs Regeln, und das Rad lässt nur die Tonarten hell, die diese Regel zulässt, und dunkelt alle anderen ab. Bei geschlossenem Schloss lässt sich eine Tonart, die nicht passt, nicht einmal auswählen.</p>
+            <div class="step__meta"><span><i class="dot" style="background:#ACFBFF"></i> die Tonart des Titels</span><span><i class="dot" style="background:#AB88FF"></i> passt dazu</span><span><i class="dot" style="background:#3A3742"></i> passt nicht</span></div>
           </div>
         </div>
 
@@ -208,7 +144,7 @@
 
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="The track panel: Camelot code, chord name, the thorough mark, the tags and the playback ruler.">
+          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="Das Titelfeld: Camelot-Code, Akkordname, das Zeichen der gründlichen Analyse, die Tags und das Wiedergabelineal.">
         </div>
       </div>
     </div>
@@ -219,65 +155,65 @@
 <section class="band" id="features">
   <div class="wrap">
     <div class="sechead reveal">
-      <span class="eyebrow">what is inside</span>
-      <h2>Everything a set needs. Nothing it doesn’t.</h2>
-      <p>No library to import, no cloud to sync, no account to make. It opens on the wheel and it stays there.</p>
+      <span class="eyebrow">was drin ist</span>
+      <h2>Alles, was ein Set braucht. Nichts, was es nicht braucht.</h2>
+      <p>Keine Bibliothek zu importieren, keine Cloud zu synchronisieren, kein Konto anzulegen. Die App öffnet auf dem Rad und bleibt dort.</p>
     </div>
 
     <div class="grid3">
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M12 3v5.4M12 15.6V21M3 12h5.4M15.6 12H21"/></svg></div>
-        <h3>Twenty-four sectors, a colour each</h3>
-        <p>Minors on the inner ring, majors on the outer one, and a fixed colour per key. After a week you stop reading the labels and go by the colour.</p>
+        <h3>Vierundzwanzig Sektoren, jeder in eigener Farbe</h3>
+        <p>Die Molltonarten auf dem inneren Ring, die Durtonarten auf dem äußeren, und eine feste Farbe je Tonart. Nach einer Woche liest man die Codes nicht mehr, sondern geht nach der Farbe.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5V5h16v2.5M9 19h6M12 5v14"/></svg></div>
-        <h3>Camelot codes or chord names</h3>
-        <p>Read the wheel as 12A and 1B, or as C♯m and G the way they sit on the circle of fifths. One switch at the top, and the app comes back the way you left it.</p>
+        <h3>Camelot-Codes oder Akkordnamen</h3>
+        <p>Lesen Sie das Rad als 12A und 1B oder als cis-Moll und G, wie sie im Quintenzirkel stehen. Ein Umschalter oben, und die App öffnet wieder so, wie Sie sie verlassen haben.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.8" cy="6" r=".9"/><circle cx="3.8" cy="12" r=".9"/><circle cx="3.8" cy="18" r=".9"/></svg></div>
-        <h3>Six rules for the mix</h3>
-        <p>From every compatible key down to a single move. The rule you picked survives closing the app, because it is the way you work, not a setting you happened to touch.</p>
+        <h3>Sechs Regeln für den Mix</h3>
+        <p>Von allen passenden Tonarten bis zu einem einzigen Zug. Die gewählte Regel überlebt das Schließen, denn sie ist Ihre Arbeitsweise und keine zufällig berührte Einstellung.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div>
-        <h3>A lock on the rules</h3>
-        <p>Closed, the wheel only lets you move to a key that mixes. Open, you go wherever you want. It is the difference between practising and improvising.</p>
+        <h3>Ein Schloss auf den Regeln</h3>
+        <p>Geschlossen lässt das Rad nur zu einer Tonart durch, die passt. Offen gehen Sie, wohin Sie wollen. Das ist der Unterschied zwischen Üben und Improvisieren.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 2.5 4.8 13.6H11l-.9 7.9 8.4-11.3H12z"/></svg></div>
-        <h3>Quick or thorough, your call</h3>
-        <p>Quick reads a slice of the track and answers fast; thorough reads all of it. Choose per track, or set one as the default and never be asked again.</p>
+        <h3>Schnell oder gründlich, Ihre Wahl</h3>
+        <p>Schnell betrachtet einen Ausschnitt und antwortet sofort; gründlich betrachtet den ganzen Titel. Wählen Sie Titel für Titel, oder legen Sie eines als Standard fest, und die Frage bleibt aus.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V4.5A1.5 1.5 0 0 1 4.5 3H12a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg></div>
-        <h3>The track’s own tags</h3>
-        <p>Title, artist, album, year and duration come out of the file itself. When the tags are missing, the file name takes their place — nothing is invented.</p>
+        <h3>Die Tags des Titels</h3>
+        <p>Titel, Interpret, Album, Jahr und Dauer kommen aus der Datei selbst. Fehlen die Tags, tritt der Dateiname an ihre Stelle — erfunden wird nichts.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10.2 8.4 16 12l-5.8 3.6z"/></svg></div>
-        <h3>Listen while you choose</h3>
-        <p>The key badge is the play button. The track starts and stops there, without a second screen and without leaving the wheel.</p>
+        <h3>Hören beim Auswählen</h3>
+        <p>Das Tonart-Feld ist der Wiedergabeknopf. Der Titel startet und stoppt dort, ohne zweiten Bildschirm und ohne das Rad zu verlassen.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="1.6"/><path d="M7.5 8.5v3M12 8.5v4M16.5 8.5v3"/></svg></div>
-        <h3>A ruler for the seconds</h3>
-        <p>A sliding tape marks the seconds around where you are. Drag it to move, or jump ten seconds at a time, to the start, or to the end.</p>
+        <h3>Ein Lineal für die Sekunden</h3>
+        <p>Ein laufendes Band markiert die Sekunden um Sie herum. Ziehen Sie es, um sich zu bewegen, oder springen Sie in Zehn-Sekunden-Schritten, an den Anfang oder ans Ende.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></div>
-        <h3>Five languages, two themes</h3>
-        <p>English, Italian, French, Spanish and German, light and dark. Both follow the phone until you decide otherwise.</p>
+        <h3>Fünf Sprachen, zwei Designs</h3>
+        <p>Deutsch, Englisch, Italienisch, Französisch und Spanisch, hell und dunkel. Beide folgen dem Telefon, bis Sie es anders entscheiden.</p>
       </div>
 
     </div>
@@ -288,9 +224,9 @@
 <section class="band band--alt" id="mixing">
   <div class="wrap">
     <div class="sechead reveal">
-      <span class="eyebrow">mixing rules</span>
-      <h2>Six rules, from the safest to the boldest.</h2>
-      <p>A rule is a set of moves around the wheel. Choose one and the wheel becomes the answer to a single question: from here, where can I go?</p>
+      <span class="eyebrow">mix-regeln</span>
+      <h2>Sechs Regeln, von der vorsichtigsten bis zur kühnsten.</h2>
+      <p>Eine Regel ist eine Menge von Zügen auf dem Rad. Wählen Sie eine, und das Rad wird zur Antwort auf eine einzige Frage: Von hier aus, wohin darf ich?</p>
     </div>
 
     <div class="rulesgrid">
@@ -299,48 +235,48 @@
         <div class="rule reveal">
           <span class="rule__key" style="background:#81FFF0">01</span>
           <div>
-            <h3>All compatible keys</h3>
-            <p>The full set. Everything that will sit next to the key you are on, without ranking it.</p>
+            <h3>Alle passenden Tonarten</h3>
+            <p>Die vollständige Menge. Alles, was sich neben die Tonart legen wird, auf der Sie stehen — ohne Rangfolge.</p>
           </div>
         </div>
 
         <div class="rule reveal">
           <span class="rule__key" style="background:#96B6FF">02</span>
           <div>
-            <h3>Without cross tone transition</h3>
-            <p>The same set minus the jump across the rings. What is left is the ground nobody argues about.</p>
+            <h3>Ohne Übergang über Kreuz</h3>
+            <p>Dieselbe Menge ohne den Sprung zwischen den beiden Ringen. Was bleibt, ist der Boden, über den niemand streitet.</p>
           </div>
         </div>
 
         <div class="rule reveal">
           <span class="rule__key" style="background:#AB88FF">03</span>
           <div>
-            <h3>Adjacent keys</h3>
-            <p>Only the neighbours: one step round the wheel, or straight across to the other ring. The move you can make blind.</p>
+            <h3>Benachbarte Tonarten</h3>
+            <p>Nur die Nachbarn: ein Schritt auf dem Rad oder geradewegs auf den anderen Ring. Der Zug, den man blind macht.</p>
           </div>
         </div>
 
         <div class="rule reveal">
           <span class="rule__key" style="background:#DD7BC4">04</span>
           <div>
-            <h3>Energy boost/lower</h3>
-            <p>Two steps up or two down: the moves that lift a floor, and the ones that bring it back to earth.</p>
+            <h3>Energie hoch und runter</h3>
+            <p>Zwei Schritte hinauf oder zwei hinunter: die Züge, die einen Floor heben, und die, die ihn wieder auf den Boden bringen.</p>
           </div>
         </div>
 
         <div class="rule reveal">
           <span class="rule__key" style="background:#FD7E9B">05</span>
           <div>
-            <h3>Semitone higher</h3>
-            <p>One move and one only, seven sectors away — a semitone up. The oldest lift there is.</p>
+            <h3>Einen Halbton höher</h3>
+            <p>Ein Zug und nur einer, sieben Sektoren entfernt — ein Halbton hinauf. Der älteste Aufschwung, den es gibt.</p>
           </div>
         </div>
 
         <div class="rule reveal">
           <span class="rule__key" style="background:#C2E775">06</span>
           <div>
-            <h3>Compatible tone</h3>
-            <p>Three sectors back with a change of ring. Further from home than it looks, and still consonant.</p>
+            <h3>Passende Tonart</h3>
+            <p>Drei Sektoren zurück mit Ringwechsel. Weiter von zu Hause, als es aussieht, und dennoch konsonant.</p>
           </div>
         </div>
 
@@ -348,17 +284,17 @@
 
       <div class="shots reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="The rule menu open on its six entries, from all compatible keys to compatible tone.">
+          <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="Das Regelmenü mit seinen sechs Einträgen, von allen passenden Tonarten bis zur passenden Tonart.">
         </div>
         <div class="phone">
-          <img loading="lazy" src="assets/phone-energy.png" width="540" height="1212" alt="The energy boost and lower rule: only the keys it allows stay lit.">
+          <img loading="lazy" src="assets/phone-energy.png" width="540" height="1212" alt="Die Regel für Energie hoch und runter: nur die Tonarten, die sie zulässt, bleiben hell.">
         </div>
       </div>
     </div>
 
     <div class="note reveal" style="margin-top:38px">
-      <h3>Reading a Camelot code</h3>
-      <p>The number is the position on the circle of fifths, from 1 to 12; the letter is the ring — A for minor, B for major. Two tracks mix when their codes are the same, or one apart, or share the number and swap the letter. That is the whole notation, and the wheel does the arithmetic for you.</p>
+      <h3>Wie man einen Camelot-Code liest</h3>
+      <p>Die Zahl ist die Position im Quintenzirkel, von 1 bis 12; der Buchstabe ist der Ring — A für Moll, B für Dur. Zwei Titel mixen sich, wenn ihre Codes gleich sind, oder um eins auseinanderliegen, oder dieselbe Zahl teilen und den Buchstaben tauschen. Mehr ist die Notation nicht, und das Rechnen übernimmt das Rad.</p>
     </div>
 
     <div class="ribbon reveal" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
@@ -369,38 +305,38 @@
 <section class="band" id="devices">
   <div class="wrap">
     <div class="sechead reveal">
-      <span class="eyebrow">phone &amp; tablet</span>
-      <h2>The same wheel, on whatever screen is on the table.</h2>
-      <p>The layout follows the screen instead of being stretched to fit it. On the phone the wheel takes the top and the track sits under it. Turn the phone sideways, or open it on a tablet, and the two move next to each other.</p>
+      <span class="eyebrow">telefon und tablet</span>
+      <h2>Dasselbe Rad, auf dem Bildschirm, der gerade auf dem Tisch liegt.</h2>
+      <p>Das Layout folgt dem Bildschirm, statt für ihn gedehnt zu werden. Auf dem Telefon nimmt das Rad oben Platz und der Titel legt sich darunter. Drehen Sie das Telefon, oder öffnen Sie die App auf einem Tablet, und beide rücken nebeneinander.</p>
     </div>
 
     <div class="devices">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic on a tablet: the wheel on the left, the track with its tags and ruler on the right.">
+          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic auf einem Tablet: links das Rad, rechts der Titel mit seinen Tags und dem Lineal.">
         </div>
-        <p class="caption">Tablet — the wheel on the left, the track on the right</p>
+        <p class="caption">Tablet — links das Rad, rechts der Titel</p>
       </div>
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-adjacent.png" width="540" height="1212" alt="The adjacent keys rule in Camelot codes, with the track playing.">
+          <img loading="lazy" src="assets/phone-adjacent.png" width="540" height="1212" alt="Die Regel der benachbarten Tonarten in Camelot-Codes, mit laufendem Titel.">
         </div>
-        <p class="caption">Phone — the wheel first, the track underneath</p>
+        <p class="caption">Telefon — zuerst das Rad, darunter der Titel</p>
       </div>
     </div>
 
     <div class="split2">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-energy.png" width="1120" height="700" alt="The tablet layout with the energy rule and the wheel in chord names.">
+          <img loading="lazy" src="assets/tablet-energy.png" width="1120" height="700" alt="Das Tablet-Layout mit der Energie-Regel und dem Rad in Akkordnamen.">
         </div>
-        <p class="caption">The same rule, with room to breathe</p>
+        <p class="caption">Dieselbe Regel, mit Platz zum Atmen</p>
       </div>
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-settings.png" width="1120" height="700" alt="The settings page on a tablet.">
+          <img loading="lazy" src="assets/tablet-settings.png" width="1120" height="700" alt="Die Einstellungsseite auf einem Tablet.">
         </div>
-        <p class="caption">Settings, wherever you opened them</p>
+        <p class="caption">Die Einstellungen, wo immer Sie sie geöffnet haben</p>
       </div>
     </div>
   </div>
@@ -410,9 +346,9 @@
 <section class="band band--alt" id="screens">
   <div class="wrap">
     <div class="sechead reveal">
-      <span class="eyebrow">screen by screen</span>
-      <h2>What it actually looks like.</h2>
-      <p>Real screenshots, nothing staged. Drag sideways.</p>
+      <span class="eyebrow">bildschirm für bildschirm</span>
+      <h2>Wie es wirklich aussieht.</h2>
+      <p>Echte Screenshots, nichts gestellt. Zur Seite ziehen.</p>
     </div>
   </div>
 
@@ -420,65 +356,65 @@
     <div class="rail">
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic on a phone: the Camelot wheel with 12A selected, the compatible sectors lit and the rest grey.">
+          <img loading="lazy" src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic auf einem Telefon: das Camelot-Rad mit gewähltem 12A, die passenden Sektoren hell und die übrigen grau.">
         </div>
-        <figcaption>The wheel, in Camelot codes</figcaption>
+        <figcaption>Das Rad, in Camelot-Codes</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-fifths.png" width="540" height="1212" alt="The same wheel labelled with chord names, C sharp minor selected and its compatible keys lit.">
+          <img loading="lazy" src="assets/phone-fifths.png" width="540" height="1212" alt="Dasselbe Rad mit Akkordnamen beschriftet, cis-Moll gewählt und die passenden Tonarten hell.">
         </div>
-        <figcaption>The same wheel, in chord names</figcaption>
+        <figcaption>Dasselbe Rad, mit Akkordnamen</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="The rule menu open on its six entries, from all compatible keys to compatible tone.">
+          <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="Das Regelmenü mit seinen sechs Einträgen, von allen passenden Tonarten bis zur passenden Tonart.">
         </div>
-        <figcaption>Six rules in one menu</figcaption>
+        <figcaption>Sechs Regeln in einem Menü</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-depth.png" width="540" height="1212" alt="The question asked before the analysis: quick, on part of the track, or thorough, on all of it.">
+          <img loading="lazy" src="assets/phone-depth.png" width="540" height="1212" alt="Die Frage vor der Analyse: schnell, auf einem Ausschnitt des Titels, oder gründlich, auf dem Ganzen.">
         </div>
-        <figcaption>Quick or thorough, asked once</figcaption>
+        <figcaption>Schnell oder gründlich, einmal gefragt</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-progress.png" width="540" height="1212" alt="The analysis running: the wheel dimmed and a ring counting the percentage in the track panel.">
+          <img loading="lazy" src="assets/phone-progress.png" width="540" height="1212" alt="Die laufende Analyse: das Rad abgedunkelt und ein Ring, der den Prozentsatz im Titelfeld zählt.">
         </div>
-        <figcaption>The ring while it works</figcaption>
+        <figcaption>Der Ring während der Arbeit</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track-fifths.png" width="540" height="1212" alt="The same track with the wheel in chord names.">
+          <img loading="lazy" src="assets/phone-track-fifths.png" width="540" height="1212" alt="Derselbe Titel mit dem Rad in Akkordnamen.">
         </div>
-        <figcaption>The track, its key and its tags</figcaption>
+        <figcaption>Der Titel, seine Tonart und seine Tags</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="The track playing, the ruler sliding under the wheel with the adjacent keys rule on.">
+          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="Der Titel in Wiedergabe, das Lineal läuft unter dem Rad, mit der Regel der benachbarten Tonarten.">
         </div>
-        <figcaption>Playing, with the ruler running</figcaption>
+        <figcaption>In Wiedergabe, das Lineal läuft</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-italian.png" width="540" height="1212" alt="DJ Harmonic in Italian, with a track analysed the quick way.">
+          <img loading="lazy" src="assets/phone-italian.png" width="540" height="1212" alt="DJ Harmonic auf Italienisch, mit einem schnell analysierten Titel.">
         </div>
-        <figcaption>Here in Italian, one of the five</figcaption>
+        <figcaption>Hier auf Italienisch, eine der fünf</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Settings: language, theme, wheel notation and default analysis mode.">
+          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Die Einstellungen: Sprache, Design, Notation des Rads und Standard-Analysemodus.">
         </div>
-        <figcaption>Language, theme, notation, analysis</figcaption>
+        <figcaption>Sprache, Design, Notation, Analyse</figcaption>
       </figure>
     </div>
   </div>
 
   <div class="wrap">
     <div class="note reveal">
-      <h3>Before you press play</h3>
-      <p>The analysis happens on the phone. The file you pick is read where it sits, and neither it nor the result ever leaves the device — there is no server of ours in the middle, which is also why there is no account. Four formats are read: mp3, m4a, wav and flac. Anything else is turned down rather than guessed at.</p>
+      <h3>Bevor Sie auf Wiedergabe drücken</h3>
+      <p>Die Analyse geschieht auf dem Telefon. Die Datei, die Sie wählen, wird dort gelesen, wo sie liegt, und weder sie noch das Ergebnis verlassen jemals das Gerät — es steht kein Server von uns dazwischen, und genau deshalb braucht es auch kein Konto. Vier Formate werden gelesen: mp3, m4a, wav und flac. Alles andere wird abgelehnt statt erraten.</p>
     </div>
   </div>
 </section>
@@ -487,11 +423,11 @@
 <section class="final">
   <div class="wrap reveal">
     <img class="mark" src="assets/icon.png" alt="" width="76" height="76">
-    <h2>Your next track is one key away.</h2>
-    <p>Open the wheel, hand it a track, and see what it wants to sit next to.</p>
+    <h2>Ihr nächster Titel ist eine Tonart entfernt.</h2>
+    <p>Öffnen Sie das Rad, geben Sie ihm einen Titel, und sehen Sie, wonach er sich legen will.</p>
     <a class="play" href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3A1.6 1.6 0 0 0 3 3.6v16.8c0 .53.2 1 .6 1.3l.1.08 9.4-9.4v-.22L3.6 2.3z" fill="#00A0FF"/><path d="M16.3 15.5l-3.2-3.1v-.23l3.2-3.15.08.05 3.72 2.12c1.06.6 1.06 1.6 0 2.2l-3.72 2.11-.08z" fill="#FFBC00"/><path d="M16.38 15.45L13.1 12.28l-9.5 9.5c.35.37.93.42 1.58.05l11.2-6.38" fill="#FF3A44"/><path d="M16.38 9.1L5.18 2.73c-.65-.37-1.23-.32-1.58.05l9.5 9.5 3.28-3.18z" fill="#00D26A"/></svg>
-        <span class="txt"><small>Get it on</small><strong>Google Play</strong></span>
+        <span class="txt"><small>Jetzt bei</small><strong>Google Play</strong></span>
       </a>
   </div>
 </section>
@@ -500,27 +436,27 @@
 <footer>
   <div class="wrap">
     <span>© 2026 DJ Harmonic</span>
-    <a href="privacy-policy.html#en">Privacy policy</a>
+    <a href="privacy-policy.html#de">Datenschutzerklärung</a>
     <a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic" target="_blank" rel="noopener">Google Play</a>
     <span class="spacer"></span>
     <span class="langrow">
-      <a href="index.html?lang=en" hreflang="en" aria-current="page">English</a><i>·</i>
+      <a href="index.html?lang=en" hreflang="en">English</a><i>·</i>
       <a href="it.html?lang=it" hreflang="it">Italiano</a><i>·</i>
       <a href="fr.html?lang=fr" hreflang="fr">Français</a><i>·</i>
       <a href="es.html?lang=es" hreflang="es">Español</a><i>·</i>
-      <a href="de.html?lang=de" hreflang="de">Deutsch</a>
+      <a href="de.html?lang=de" hreflang="de" aria-current="page">Deutsch</a>
     </span>
   </div>
   <div class="wrap">
-    <p class="legal">Google Play and the Google Play logo are trademarks of Google LLC. The Camelot wheel notation is widely used by DJs; DJ Harmonic is an independent app and is not affiliated with Mixed In Key LLC.</p>
+    <p class="legal">Google Play und das Google-Play-Logo sind Marken von Google LLC. Die Notation des Camelot-Rads ist unter DJs weit verbreitet; DJ Harmonic ist eine unabhängige App und steht in keiner Verbindung zu Mixed In Key LLC.</p>
   </div>
 </footer>
 
 <!-- ══════════════════════════ avviso sull'archiviazione ══════════════════════════ -->
 <aside class="notice" id="notice" hidden aria-label="Storage notice">
   <div class="notice__in">
-    <p>This site keeps one thing on your device: the language you choose from the menu, so your next visit opens in it. No cookies, no analytics, no third-party services. <a href="privacy-policy.html#en">Privacy policy</a></p>
-    <button type="button">Got it</button>
+    <p>Diese Website behält eine einzige Sache auf Ihrem Gerät: die Sprache, die Sie im Menü wählen, damit Ihr nächster Besuch darin öffnet. Keine Cookies, keine Analyse, keine Dienste Dritter. <a href="privacy-policy.html#de">Datenschutzerklärung</a></p>
+    <button type="button">Verstanden</button>
   </div>
 </aside>
 

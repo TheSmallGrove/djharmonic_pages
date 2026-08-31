@@ -1,0 +1,540 @@
+/* ═══════════════════════════ DJ Harmonic — sito ═══════════════════════════
+
+   Un foglio solo per le cinque lingue e per l'informativa. La tavolozza e' quella
+   del tema scuro dell'app (lib/ui/theme/app_theme.dart): il viola e' l'accento,
+   e le ventiquattro tinte della ruota di Camelot sono un dato del dominio — si
+   scrivono per esteso solo dove servono davvero, nel nastro e nei pallini delle
+   regole, perche' li' il colore *e'* l'informazione.
+
+   Il sito e' solo scuro, come l'app quando la si usa in console: gli screenshot
+   sono scuri, i bagliori e le cornici dei dispositivi vivono su fondo scuro, e un
+   tema chiaro li lascerebbe entrambi senza appoggio.                            */
+
+:root {
+  --ink:        #100E14;
+  --ink-2:      #17151D;
+  --line:       rgba(255,255,255,.10);
+  --line-soft:  rgba(255,255,255,.06);
+  --fg:         #EFECF6;
+  --muted:      #A09BB2;
+  --dim:        #746E86;
+  --violet:     #6C4BD4;
+  --violet-lt:  #AB88FF;
+  --radius:     18px;
+  --maxw:       1160px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+h1, h2, h3 { line-height: 1.12; letter-spacing: -.022em; margin: 0; font-weight: 700; }
+h1 { font-size: clamp(2.4rem, 6.2vw, 4.1rem); }
+h2 { font-size: clamp(1.75rem, 3.6vw, 2.55rem); }
+h3 { font-size: 1.06rem; letter-spacing: -.01em; }
+p  { margin: 0; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-size: .78rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--violet-lt);
+}
+.eyebrow::before {
+  content: ""; width: 26px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--violet-lt));
+}
+
+.lead { color: var(--muted); font-size: 1.12rem; max-width: 56ch; }
+
+/* ───────────────────────────── barra in cima ───────────────────────────── */
+
+.topbar {
+  position: sticky; top: 0; z-index: 60;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(16,14,20,.78);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease;
+}
+.topbar.scrolled { border-bottom-color: var(--line-soft); }
+.topbar .wrap { display: flex; align-items: center; gap: 20px; height: 68px; }
+
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 600; letter-spacing: -.02em; font-size: 1.16rem; }
+.brand img { width: 32px; height: 32px; border-radius: 50%; }
+
+.navlinks { margin-left: auto; display: flex; gap: 26px; font-size: .93rem; color: var(--muted); }
+.navlinks a { text-decoration: none; transition: color .2s; }
+.navlinks a:hover { color: var(--fg); }
+@media (max-width: 980px) { .navlinks { display: none; } .topbar .lang { margin-left: auto; } }
+
+/* ───────────────────────────── badge Google Play ───────────────────────────── */
+
+.play {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 20px 10px 16px;
+  border: 1px solid rgba(255,255,255,.28); border-radius: 12px;
+  background: #000; color: #fff; text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.play:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.55); box-shadow: 0 12px 34px rgba(0,0,0,.55); }
+.play svg { width: 26px; height: 26px; flex: none; }
+.play .txt { display: grid; text-align: left; }
+.play .txt small { font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; opacity: .85; line-height: 1.4; }
+.play .txt strong { font-size: 1.12rem; font-weight: 500; letter-spacing: -.01em; line-height: 1.15; }
+.play--sm { padding: 7px 15px 7px 12px; border-radius: 10px; }
+.play--sm svg { width: 20px; height: 20px; }
+.play--sm .txt small { font-size: .5rem; }
+.play--sm .txt strong { font-size: .9rem; }
+@media (max-width: 520px) { .topbar .play { display: none; } }
+
+/* ───────────────────────────── apertura ───────────────────────────── */
+
+.hero { position: relative; padding: clamp(52px, 9vw, 108px) 0 clamp(60px, 8vw, 110px); overflow: hidden; }
+
+/* La ruota sfocata dietro il titolo: e' lo screenshot del tablet, non un motivo
+   inventato, cosi' il fondo della pagina e' gia' l'app. */
+.hero__bg { position: absolute; inset: -12% -8% auto -8%; height: 132%; z-index: 0; }
+.hero__bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: blur(26px) saturate(1.15) brightness(.62);
+  opacity: .55;
+  transform: scale(1.12);
+}
+.hero__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(56% 60% at 24% 30%, rgba(108,75,212,.45), transparent 70%),
+    linear-gradient(180deg, rgba(16,14,20,.44) 0%, rgba(16,14,20,.86) 62%, var(--ink) 100%);
+}
+
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+@media (max-width: 940px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+.hero h1 { margin: 20px 0 0; }
+.hero h1 em { font-style: normal; color: var(--violet-lt); }
+.hero .lead { margin-top: 20px; }
+
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 30px; }
+.ghost {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 12px 20px; border-radius: 12px;
+  border: 1px solid var(--line); color: var(--fg);
+  text-decoration: none; font-size: .95rem; font-weight: 500;
+  transition: background .2s, border-color .2s;
+}
+.ghost:hover { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.22); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip {
+  font-size: .8rem; color: var(--muted);
+  padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--line-soft); background: rgba(255,255,255,.028);
+}
+.chip b { color: var(--fg); font-weight: 600; }
+
+.hero__device { display: flex; justify-content: center; }
+.hero__device .phone { width: min(300px, 74vw); }
+
+/* ───────────────────────────── cornici dei dispositivi ───────────────────────────── */
+
+.phone {
+  position: relative; padding: 9px; border-radius: 40px;
+  background: linear-gradient(150deg, #4A4750, #171519 42%, #121014 70%, #3A373F);
+  box-shadow: 0 42px 90px -30px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.phone::before {
+  content: ""; position: absolute; top: 17px; left: 50%; transform: translateX(-50%);
+  width: 78px; height: 5px; border-radius: 4px; background: rgba(0,0,0,.55); z-index: 2;
+}
+.phone img { border-radius: 32px; width: 100%; }
+
+.tablet {
+  position: relative; padding: 12px 13px; border-radius: 22px;
+  background: linear-gradient(150deg, #4A4750, #171519 45%, #121014 72%, #3A373F);
+  box-shadow: 0 42px 90px -34px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.tablet::before {
+  content: ""; position: absolute; top: 50%; left: 5px; transform: translateY(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.22);
+}
+.tablet img { border-radius: 11px; width: 100%; }
+
+/* ───────────────────────────── sezioni ───────────────────────────── */
+
+.band { padding: clamp(64px, 9vw, 116px) 0; position: relative; }
+.band--alt { background: linear-gradient(180deg, transparent, var(--ink-2) 10%, var(--ink-2) 90%, transparent); }
+
+.sechead { max-width: 62ch; margin-bottom: clamp(38px, 5vw, 62px); }
+.sechead h2 { margin: 16px 0 0; }
+.sechead p { margin-top: 16px; color: var(--muted); font-size: 1.06rem; }
+
+/* ── i passi: la linea che li unisce si disegna quando entrano in vista ── */
+
+.stepsgrid { display: grid; grid-template-columns: 1fr minmax(0, 360px); gap: clamp(30px, 6vw, 80px); align-items: center; }
+@media (max-width: 900px) { .stepsgrid { grid-template-columns: 1fr; } .stepsgrid .phone { width: min(280px, 70vw); margin: 0 auto; } }
+
+.step { display: grid; grid-template-columns: 46px 1fr; gap: 22px; padding-bottom: 42px; }
+.step:last-child { padding-bottom: 0; }
+.step__rail { position: relative; display: flex; justify-content: center; }
+.step__pin {
+  width: 46px; height: 46px; border-radius: 13px; flex: none;
+  display: grid; place-items: center;
+  background: rgba(108,75,212,.18); border: 1px solid rgba(171,136,255,.32);
+  color: var(--violet-lt);
+}
+.step__pin svg { width: 21px; height: 21px; }
+.step__line {
+  position: absolute; top: 52px; bottom: -6px; left: 50%; width: 3px; margin-left: -1.5px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--violet-lt), rgba(171,136,255,.22));
+  transform-origin: top; transform: scaleY(0);
+  transition: transform .9s cubic-bezier(.22,.8,.3,1) .15s;
+}
+.reveal.is-in .step__line { transform: scaleY(1); }
+.step:last-child .step__line { display: none; }
+.step__body h3 { margin-bottom: 9px; font-size: 1.28rem; }
+.step__body p { color: var(--muted); max-width: 54ch; }
+.step__meta { margin-top: 12px; font-size: .84rem; color: var(--dim); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.step__meta span { display: inline-flex; align-items: center; gap: 7px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: inline-block; }
+
+/* ── cosa c'e' dentro ── */
+
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 960px) { .grid3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .grid3 { grid-template-columns: 1fr; } }
+
+.card {
+  padding: 26px 24px 28px; border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.014));
+  border: 1px solid var(--line-soft);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.card:hover { border-color: rgba(171,136,255,.32); transform: translateY(-3px); }
+.card__ico { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(108,75,212,.2); color: var(--violet-lt); margin-bottom: 16px; }
+.card__ico svg { width: 19px; height: 19px; }
+.card h3 { margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: .95rem; }
+
+/* ── le regole di mix ──
+   Ogni regola porta la sigla di una tonalita' d'esempio, tinta col colore che
+   quella tonalita' ha davvero sulla ruota: la legenda del sito e la ruota
+   dell'app dicono la stessa cosa con la stessa tinta. */
+
+.rulesgrid { display: grid; grid-template-columns: 1fr minmax(0, 380px); gap: clamp(30px, 5vw, 70px); align-items: start; }
+@media (max-width: 940px) { .rulesgrid { grid-template-columns: 1fr; } }
+
+.rules { display: grid; gap: 10px; }
+.rule {
+  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+  padding: 16px 18px; border-radius: 14px;
+  border: 1px solid var(--line-soft); background: rgba(255,255,255,.026);
+  transition: border-color .25s ease, background .25s ease;
+}
+.rule:hover { border-color: rgba(171,136,255,.28); background: rgba(255,255,255,.045); }
+.rule__key {
+  font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+  padding: 5px 9px; border-radius: 8px; color: #100E14;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: nowrap;
+}
+.rule h3 { font-size: 1.02rem; margin-bottom: 5px; }
+.rule p { color: var(--muted); font-size: .92rem; }
+
+.rulesgrid .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .rulesgrid .shots { grid-template-columns: 1fr; justify-items: center; } .rulesgrid .phone { width: min(260px, 66vw); } }
+
+/* ── il nastro delle ventiquattro tinte: la ruota srotolata ── */
+
+.ribbon { display: flex; gap: 3px; margin: clamp(38px, 5vw, 58px) 0 0; }
+.ribbon span { flex: 1; height: 8px; border-radius: 2px; }
+
+/* ── telefono e tablet ── */
+
+.devices { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 250px); gap: clamp(26px, 4vw, 54px); align-items: end; }
+@media (max-width: 880px) { .devices { grid-template-columns: 1fr; justify-items: center; } .devices .phone { width: min(250px, 62vw); } }
+
+.caption { margin-top: 16px; font-size: .86rem; color: var(--dim); text-align: center; }
+
+.split2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 42px; }
+@media (max-width: 880px) { .split2 { grid-template-columns: 1fr; } }
+
+/* ── la galleria che scorre di lato ── */
+
+.railwrap { margin: 0 calc(50% - 50vw); }
+.rail {
+  display: flex; gap: 22px; overflow-x: auto; padding: 6px 24px 26px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.18) transparent;
+  max-width: calc(var(--maxw) + 48px); margin: 0 auto;
+}
+.rail::-webkit-scrollbar { height: 7px; }
+.rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,.16); border-radius: 7px; }
+.shot { flex: 0 0 auto; width: 232px; scroll-snap-align: center; margin: 0; }
+.shot .phone { width: 100%; }
+.shot figcaption { margin-top: 14px; font-size: .84rem; color: var(--dim); text-align: center; }
+
+/* ── il richiamo ── */
+
+.note { border-left: 3px solid var(--violet); border-radius: 4px; padding: 22px 26px; background: rgba(108,75,212,.11); display: grid; gap: 12px; }
+.note h3 { font-size: 1.1rem; }
+.note p { color: #C3BCD2; font-size: .96rem; max-width: 76ch; }
+
+/* ── chiamata finale ── */
+
+.final { text-align: center; padding: clamp(70px, 10vw, 130px) 0; position: relative; }
+.final::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(50% 70% at 50% 40%, rgba(108,75,212,.3), transparent 72%);
+}
+.final .wrap { position: relative; z-index: 1; display: grid; justify-items: center; gap: 22px; }
+.final .mark { width: 76px; height: 76px; border-radius: 50%; }
+.final p { color: var(--muted); max-width: 48ch; }
+
+/* ── piede ── */
+
+footer { border-top: 1px solid var(--line-soft); padding: 34px 0 46px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; font-size: .87rem; color: var(--dim); }
+/* I link veri del piede sono figli diretti di .wrap; i cinque delle lingue
+   stanno dentro .langrow e restano piatti, o la riga diventa rumorosa. */
+footer a { text-decoration: none; transition: color .2s, border-color .2s; }
+footer .wrap > a {
+  color: var(--muted);
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
+footer .wrap > a:hover { color: var(--fg); border-bottom-color: rgba(255,255,255,.42); }
+footer a:hover { color: var(--fg); }
+footer .spacer { margin-left: auto; }
+.legal { font-size: .78rem; color: #5F596E; max-width: 66ch; margin-top: 18px; line-height: 1.55; }
+
+/* ── comparsa allo scorrimento ── */
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.22,.8,.3,1), transform .7s cubic-bezier(.22,.8,.3,1); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .step__line { transform: scaleY(1); transition: none; }
+  .card:hover, .play:hover { transform: none; }
+}
+
+/* ───────────────────────────── selettore di lingua ───────────────────────────── */
+
+.lang { position: relative; }
+
+.lang > summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 11px; border-radius: 10px;
+  border: 1px solid var(--line); color: var(--muted);
+  font-size: .86rem; font-weight: 600; letter-spacing: .04em;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.lang > summary::-webkit-details-marker { display: none; }
+.lang > summary::marker { content: ""; }
+.lang > summary:hover { color: var(--fg); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.04); }
+.lang > summary:focus-visible { outline: 2px solid var(--violet-lt); outline-offset: 2px; }
+.lang .globe { width: 15px; height: 15px; flex: none; }
+.lang .chev  { width: 10px; height: 10px; flex: none; opacity: .65; transition: transform .2s ease; }
+.lang[open] .chev { transform: rotate(180deg); }
+
+.lang__menu {
+  position: absolute; top: calc(100% + 9px); right: 0; z-index: 80;
+  min-width: 178px; padding: 6px;
+  background: #1B1822; border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 22px 54px -18px rgba(0,0,0,.88);
+  display: grid; gap: 2px;
+}
+.lang__menu a {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 9px 11px; border-radius: 8px;
+  font-size: .92rem; color: var(--muted); text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.lang__menu a:hover { background: rgba(255,255,255,.06); color: var(--fg); }
+.lang__menu a[aria-current="page"] { color: var(--violet-lt); background: rgba(108,75,212,.18); }
+.lang__menu a span { font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; opacity: .55; }
+
+/* Il piede ripete la scelta in chiaro, per chi i menu non li apre mai. */
+.langrow { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.langrow a { text-decoration: none; }
+.langrow a[aria-current="page"] { color: var(--fg); }
+.langrow i { font-style: normal; opacity: .35; }
+
+/* ───────────────────────────── pagina del documento ─────────────────────────────
+
+   Testo legale lungo: l'informativa. Stessa tavolozza, stesso carattere e stessa
+   barra del resto del sito, ma una misura molto piu' stretta — quella pagina si
+   legge riga per riga, non si scorre, e i 1160px di .wrap la renderebbero
+   illeggibile.                                                                   */
+
+.doc {
+  max-width: 46rem; margin: 0 auto;
+  padding: clamp(40px, 6vw, 76px) 24px 90px;
+}
+
+.doc h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0 0 .35rem; }
+.doc h2 { font-size: 1.32rem; margin: 2.7rem 0 .7rem; }
+.doc h3 { font-size: 1.03rem; margin: 2rem 0 .5rem; color: var(--violet-lt); }
+
+.doc p  { margin: 0 0 1rem; color: var(--muted); line-height: 1.72; }
+.doc strong { color: var(--fg); font-weight: 600; }
+
+.doc a {
+  color: var(--violet-lt); text-decoration: none;
+  border-bottom: 1px solid rgba(171,136,255,.35);
+  transition: border-color .2s;
+}
+.doc a:hover { border-bottom-color: var(--violet-lt); }
+
+.doc ul { margin: 0 0 1.15rem; padding-left: 1.2rem; }
+.doc li { margin-bottom: .5rem; color: var(--muted); line-height: 1.66; }
+.doc li::marker { color: var(--violet-lt); }
+
+/* L'intestazione del documento: la ruota accanto al titolo. */
+.doc .masthead { display: flex; align-items: center; gap: 22px; margin-bottom: 1.8rem; }
+.doc .masthead svg { flex: none; }
+@media (max-width: 34rem) {
+  .doc .masthead { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .doc .masthead svg { width: 76px; height: 76px; }
+}
+
+.doc .updated { margin: 0; font-size: .9rem; color: var(--dim); }
+.doc .updated strong { color: var(--dim); font-weight: 600; }
+
+.doc .controller,
+.doc .short {
+  margin: 0 0 2.3rem; padding: .95rem 1.15rem;
+  border-left: 3px solid var(--violet); border-radius: 4px;
+  background: rgba(108,75,212,.11);
+  font-size: .95rem; color: #C3BCD2;
+}
+.doc .short { padding: 1.2rem 1.4rem; }
+.doc .short h2 { margin: 0 0 .6rem; font-size: 1.15rem; color: var(--fg); }
+.doc .short p:last-child { margin-bottom: 0; }
+
+.doc .table-wrap { overflow-x: auto; margin: .9rem 0 1.5rem; }
+.doc table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+.doc th, .doc td { text-align: left; padding: .62rem .7rem; vertical-align: top; border-bottom: 1px solid var(--line-soft); }
+.doc th { color: var(--fg); font-weight: 600; font-size: .78rem; letter-spacing: .07em; text-transform: uppercase; }
+.doc td { color: var(--muted); }
+.doc tr:last-child td { border-bottom: 0; }
+
+.doc code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em; color: var(--violet-lt);
+  background: rgba(108,75,212,.16); padding: .1em .4em; border-radius: 4px;
+}
+
+.doc footer {
+  margin-top: 3.6rem; padding: 1.15rem 0 0;
+  border-top: 1px solid var(--line-soft);
+  color: var(--dim); font-size: .87rem;
+}
+
+/* Sulla pagina del documento la barra porta solo il marchio e le lingue, quindi
+   si allinea alla colonna del testo invece di stare al margine della pagina. */
+.topbar--doc .wrap { max-width: 46rem; justify-content: space-between; }
+.topbar--doc .brand svg { display: block; border-radius: 50%; }
+
+/* Li' il selettore e' una fila di sigle e non un menu a tendina: la pagina non
+   cambia indirizzo quando si cambia lingua — le cinque versioni sono tutte in
+   questo file — quindi non c'e' un elenco di destinazioni da mostrare. */
+.langs { display: flex; gap: .35rem; }
+
+.langs button {
+  font: inherit;
+  font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+  padding: .3rem .7rem; border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent; color: var(--muted);
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.langs button:hover { color: var(--fg); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.04); }
+.langs button[aria-pressed="true"] { background: rgba(108,75,212,.28); border-color: rgba(171,136,255,.42); color: var(--fg); }
+.langs button:focus-visible { outline: 2px solid var(--violet-lt); outline-offset: 2px; }
+
+@media (max-width: 30rem) {
+  .topbar--doc .brand span { display: none; }
+  .langs button { padding: .3rem .55rem; }
+}
+
+/* Il nastro della ruota fa da separatore fra una lingua e l'altra
+   dell'informativa quando si vedono tutte, cioe' senza JavaScript. */
+.doc .ribbon { margin: 4.6rem 0 3rem; }
+
+/* Senza JavaScript nessun attributo viene applicato e restano visibili tutte e
+   cinque le versioni, che per un testo legale e' il comportamento giusto. */
+html[data-show] section[lang] { display: none; }
+html[data-show="en"] section[lang="en"],
+html[data-show="it"] section[lang="it"],
+html[data-show="fr"] section[lang="fr"],
+html[data-show="es"] section[lang="es"],
+html[data-show="de"] section[lang="de"] { display: block; }
+
+html[data-show] .doc .ribbon { display: none; }
+
+@media print {
+  .topbar, .ribbon, .notice { display: none; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .doc p, .doc li, .doc td, .doc .updated { color: #222; }
+  .doc h3 { color: #000; }
+  a { color: inherit; text-decoration: none; border: 0; }
+}
+
+/* ───────────────────────────── avviso sull'archiviazione ─────────────────────────────
+
+   Non e' un cancello di consenso. L'unica cosa che questo sito conserva e' la
+   lingua scelta, che l'articolo 5(3) esenta dal consenso — quindi la barra
+   informa, rimanda al dettaglio, e un clic la manda via per sempre. Chiedere un
+   consenso non dovuto sarebbe attrito, non conformita'.                          */
+
+.notice[hidden] { display: none; }
+
+.notice {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  background: rgba(23,21,29,.97);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -18px 44px -22px rgba(0,0,0,.9);
+  animation: notice-in .45s cubic-bezier(.22,.8,.3,1);
+}
+
+.notice__in {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 15px 24px 17px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;
+}
+
+.notice p { margin: 0; flex: 1 1 28rem; font-size: .88rem; line-height: 1.6; color: var(--muted); }
+.notice a { color: var(--violet-lt); text-decoration: none; border-bottom: 1px solid rgba(171,136,255,.35); }
+.notice a:hover { border-bottom-color: var(--violet-lt); }
+
+.notice button {
+  flex: none; cursor: pointer;
+  font: inherit; font-size: .88rem; font-weight: 600;
+  padding: 9px 22px; border-radius: 10px;
+  border: 1px solid rgba(171,136,255,.45);
+  background: rgba(108,75,212,.34); color: var(--fg);
+  transition: background .2s, border-color .2s;
+}
+.notice button:hover { background: rgba(108,75,212,.58); border-color: var(--violet-lt); }
+.notice button:focus-visible { outline: 2px solid var(--violet-lt); outline-offset: 2px; }
+
+@keyframes notice-in { from { transform: translateY(100%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .notice { animation: none; } }
