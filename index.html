@@ -492,13 +492,36 @@ html[data-show] .ribbon { display: none; }
 </main>
 
 <script>
-// Il selettore di lingua: mostra una sola versione e non salva nulla.
-// Senza JavaScript restano visibili tutte e cinque — la pagina non dipende da
-// questo script per dire cio' che deve dire.
+// Il selettore di lingua. La pagina si apre nella lingua del browser, a meno
+// che tu non ne abbia scelta un'altra: quella scelta e' l'unica cosa che il
+// sito scrive nel tuo browser, ed e' descritta nell'informativa.
+// Senza JavaScript restano visibili tutte e cinque le versioni — la pagina non
+// dipende da questo script per dire cio' che deve dire.
 (function () {
   var root = document.documentElement;
   var buttons = document.querySelectorAll('.langs button');
   var supported = ['en', 'it', 'fr', 'es', 'de'];
+  var STORE = 'djharmonic.lang';
+
+  // La memoria del browser puo' non esserci — navigazione privata, dati del
+  // sito bloccati — e allora si tira dritto sulla lingua del browser invece di
+  // piantarsi: e' una comodita', non un requisito.
+  function remembered() {
+    try {
+      var saved = localStorage.getItem(STORE);
+      return supported.indexOf(saved) >= 0 ? saved : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function remember(lang) {
+    try {
+      localStorage.setItem(STORE, lang);
+    } catch (error) {
+      // Niente da fare: la lingua resta scelta per questa visita soltanto.
+    }
+  }
 
   // Le lingue affini sono le stesse di lib/l10n/app_locales.dart: a chi ha il
   // telefono in portoghese lo spagnolo dice piu' dell'inglese, a un olandese il
@@ -535,7 +558,8 @@ html[data-show] .ribbon { display: none; }
   // abbiamo davvero e solo poi accontentandosi dell'affinita'. Chi ha impostato
   // olandese e poi inglese vuole l'inglese vero, non il tedesco affine alla sua
   // prima scelta.
-  function resolve(wanted) {
+  function fromBrowser() {
+    var wanted = navigator.languages || [navigator.language || 'en'];
     var i;
 
     for (i = 0; i < wanted.length; i++) {
@@ -549,16 +573,20 @@ html[data-show] .ribbon { display: none; }
     return 'en';
   }
 
+  // Solo il tocco sul selettore vale come scelta: il rilevamento automatico
+  // guarda e non scrive.
   buttons.forEach(function (button) {
-    button.addEventListener('click', function () { show(button.dataset.set); });
+    button.addEventListener('click', function () {
+      show(button.dataset.set);
+      remember(button.dataset.set);
+    });
   });
 
-  // L'ancora vince sulla lingua del browser: chi arriva con un link che finisce
-  // per #de ha gia' scelto. Ne' l'una ne' l'altra lascia traccia.
+  // Nell'ordine: l'ancora, che e' una scelta esplicita di chi arriva con quel
+  // link; poi la lingua scelta in una visita precedente; infine quella del
+  // browser.
   var hash = location.hash.replace('#', '');
-  show(supported.indexOf(hash) >= 0
-    ? hash
-    : resolve(navigator.languages || [navigator.language || 'en']));
+  show(supported.indexOf(hash) >= 0 ? hash : (remembered() || fromBrowser()));
 })();
 </script>
 
