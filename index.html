@@ -1,1 +1,566 @@
-dj harmonic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJ Harmonic</title>
+<meta name="description" content="The Camelot wheel for mixing in key: pick a track, read its key, see which keys mix with it. Everything on your device.">
+<meta name="theme-color" content="#242232">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2260%22%20fill%3D%22%23242232%22%2F%3E%3Cpath%20fill%3D%22%2395FEBB%22%20d%3D%22M60.78%204.01A56%2056%200%200%201%2087.32%2011.12L78.54%2026.83A38%2038%200%200%200%2060.53%2022Z%22%2F%3E%3Cpath%20fill%3D%22%23B5FFF0%22%20d%3D%22M60.49%2025A35%2035%200%200%201%2077.08%2029.45L68.78%2044.29A18%2018%200%200%200%2060.25%2042Z%22%2F%3E%3Cpath%20fill%3D%22%23ACFD85%22%20d%3D%22M88.67%2011.9A56%2056%200%200%201%20108.1%2031.33L92.64%2040.54A38%2038%200%200%200%2079.46%2027.36Z%22%2F%3E%3Cpath%20fill%3D%22%23BFFDCE%22%20d%3D%22M77.92%2029.94A35%2035%200%200%201%2090.06%2042.08L75.46%2050.78A18%2018%200%200%200%2069.22%2044.54Z%22%2F%3E%3Cpath%20fill%3D%22%23C2E775%22%20d%3D%22M108.88%2032.68A56%2056%200%200%201%20115.99%2059.22L98%2059.47A38%2038%200%200%200%2093.17%2041.46Z%22%2F%3E%3Cpath%20fill%3D%22%23D0FBB3%22%20d%3D%22M90.55%2042.92A35%2035%200%200%201%2095%2059.51L78%2059.75A18%2018%200%200%200%2075.71%2051.22Z%22%2F%3E%3Cpath%20fill%3D%22%23E1BB72%22%20d%3D%22M115.99%2060.78A56%2056%200%200%201%20108.88%2087.32L93.17%2078.54A38%2038%200%200%200%2098%2060.53Z%22%2F%3E%3Cpath%20fill%3D%22%23DCECA3%22%20d%3D%22M95%2060.49A35%2035%200%200%201%2090.55%2077.08L75.71%2068.78A18%2018%200%200%200%2078%2060.25Z%22%2F%3E%3Cpath%20fill%3D%22%23FB9181%22%20d%3D%22M108.1%2088.67A56%2056%200%200%201%2088.67%20108.1L79.46%2092.64A38%2038%200%200%200%2092.64%2079.46Z%22%2F%3E%3Cpath%20fill%3D%22%23F1CEA8%22%20d%3D%22M90.06%2077.92A35%2035%200%200%201%2077.92%2090.06L69.22%2075.46A18%2018%200%200%200%2075.46%2069.22Z%22%2F%3E%3Cpath%20fill%3D%22%23FD7E9B%22%20d%3D%22M87.32%20108.88A56%2056%200%200%201%2060.78%20115.99L60.53%2098A38%2038%200%200%200%2078.54%2093.17Z%22%2F%3E%3Cpath%20fill%3D%22%23FFB3B7%22%20d%3D%22M77.08%2090.55A35%2035%200%200%201%2060.49%2095L60.25%2078A18%2018%200%200%200%2068.78%2075.71Z%22%2F%3E%3Cpath%20fill%3D%22%23DD7BC4%22%20d%3D%22M59.22%20115.99A56%2056%200%200%201%2032.68%20108.88L41.46%2093.17A38%2038%200%200%200%2059.47%2098Z%22%2F%3E%3Cpath%20fill%3D%22%23F8B3C8%22%20d%3D%22M59.51%2095A35%2035%200%200%201%2042.92%2090.55L51.22%2075.71A18%2018%200%200%200%2059.75%2078Z%22%2F%3E%3Cpath%20fill%3D%22%23C47EEE%22%20d%3D%22M31.33%20108.1A56%2056%200%200%201%2011.9%2088.67L27.36%2079.46A38%2038%200%200%200%2040.54%2092.64Z%22%2F%3E%3Cpath%20fill%3D%22%23EBADDE%22%20d%3D%22M42.08%2090.06A35%2035%200%200%201%2029.94%2077.92L44.54%2069.22A18%2018%200%200%200%2050.78%2075.46Z%22%2F%3E%3Cpath%20fill%3D%22%23AB88FF%22%20d%3D%22M11.12%2087.32A56%2056%200%200%201%204.01%2060.78L22%2060.53A38%2038%200%200%200%2026.83%2078.54Z%22%2F%3E%3Cpath%20fill%3D%22%23D6AEF5%22%20d%3D%22M29.45%2077.08A35%2035%200%200%201%2025%2060.49L42%2060.25A18%2018%200%200%200%2044.29%2068.78Z%22%2F%3E%3Cpath%20fill%3D%22%2396B6FF%22%20d%3D%22M4.01%2059.22A56%2056%200%200%201%2011.12%2032.68L26.83%2041.46A38%2038%200%200%200%2022%2059.47Z%22%2F%3E%3Cpath%20fill%3D%22%23C8B8FF%22%20d%3D%22M25%2059.51A35%2035%200%200%201%2029.45%2042.92L44.29%2051.22A18%2018%200%200%200%2042%2059.75Z%22%2F%3E%3Cpath%20fill%3D%22%2385EAFE%22%20d%3D%22M11.9%2031.33A56%2056%200%200%201%2031.33%2011.9L40.54%2027.36A38%2038%200%200%200%2027.36%2040.54Z%22%2F%3E%3Cpath%20fill%3D%22%23B7D6FF%22%20d%3D%22M29.94%2042.08A35%2035%200%200%201%2042.08%2029.94L50.78%2044.54A18%2018%200%200%200%2044.54%2050.78Z%22%2F%3E%3Cpath%20fill%3D%22%2381FFF0%22%20d%3D%22M32.68%2011.12A56%2056%200%200%201%2059.22%204.01L59.47%2022A38%2038%200%200%200%2041.46%2026.83Z%22%2F%3E%3Cpath%20fill%3D%22%23ACFBFF%22%20d%3D%22M42.92%2029.45A35%2035%200%200%201%2059.51%2025L59.75%2042A18%2018%200%200%200%2051.22%2044.29Z%22%2F%3E%3C%2Fsvg%3E">
+
+<style>
+/* ─────────────────────────── tavolozza ───────────────────────────
+   Gli stessi ruoli di colore dell'app (lib/ui/theme/app_theme.dart) e della
+   pagina della privacy: l'accento e' il seme, l'header tiene la sua tinta in
+   entrambi i temi ed e' la pagina a scendere quando il dispositivo e' scuro. */
+:root {
+  color-scheme: light dark;
+
+  --accent:      #6C4BD4;
+  --accent-soft: rgba(108, 75, 212, .10);
+  --header:      #242232;
+  --on-header:   #FFFFFF;
+
+  --bg:      #FFFFFF;
+  --surface: #F7F6FB;
+  --text:    #1B1B22;
+  --muted:   #63636F;
+  --border:  #E5E4EE;
+  --link:    #5A3CC4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:      #8B6BF0;
+    --accent-soft: rgba(171, 136, 255, .12);
+
+    --bg:      #121216;
+    --surface: #1B1B22;
+    --text:    #E8E7EF;
+    --muted:   #9A99A7;
+    --border:  #2B2B35;
+    --link:    #AB88FF;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+::selection { background: var(--accent-soft); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+a { color: var(--link); text-underline-offset: .18em; }
+
+/* ─────────────────────────── barra in cima ─────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header);
+  color: var(--on-header);
+  border-bottom: 3px solid #6C4BD4;
+}
+
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+  flex-wrap: wrap;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+@media (max-width: 30rem) {
+  .brand span { display: none; }
+  .langs button { padding: .3rem .55rem; }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand svg { display: block; }
+
+.langs { display: flex; gap: .35rem; }
+
+.langs button {
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: transparent;
+  color: rgba(255, 255, 255, .72);
+  cursor: pointer;
+}
+
+.langs button:hover { color: #fff; border-color: rgba(255, 255, 255, .45); }
+
+.langs button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, .14);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ─────────────────────────── apertura ──────────────────────────────── */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3.5rem 0 1rem;
+}
+
+.hero svg { flex: none; }
+
+@media (max-width: 34rem) {
+  .hero { flex-direction: column; align-items: flex-start; gap: 1.25rem; padding-top: 2.5rem; }
+  .hero svg { width: 92px; height: 92px; }
+}
+
+h1 {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin: 0 0 .3rem;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.lead { margin: 0 0 1.5rem; }
+
+.store { margin: 0; }
+
+/* Il badge ufficiale di Google si mostra com'e', senza ritinteggiarlo ne'
+   ridisegnarlo: il suo bordo chiaro lo tiene leggibile anche sul fondo
+   scuro, quindi non gli serve un riquadro sotto. */
+.store img { display: block; width: 215px; height: auto; }
+
+/* ─────────────────────────── le quattro schede ─────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+}
+
+.card h2 {
+  font-size: 1.02rem;
+  margin: 0 0 .5rem;
+}
+
+.card h2::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: .55em;
+  vertical-align: .18em;
+}
+
+.card p { margin: 0; font-size: .95rem; color: var(--muted); }
+
+.note {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* ─── il nastro di Camelot: le ventiquattro tinte della ruota ─────────
+   Separa una lingua dall'altra quando si vedono tutte, cioe' senza
+   JavaScript.                                                         */
+.ribbon { display: flex; gap: 2px; margin: 3.5rem 0; }
+.ribbon span { flex: 1; height: 7px; border-radius: 2px; }
+
+footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+}
+
+/* ─── selettore di lingua: ne mostra una sola ─────────────────────────
+   Senza JavaScript nessun attributo viene applicato e restano visibili
+   tutte e cinque.                                                     */
+html[data-show] section[lang] { display: none; }
+html[data-show="en"] section[lang="en"],
+html[data-show="it"] section[lang="it"],
+html[data-show="fr"] section[lang="fr"],
+html[data-show="es"] section[lang="es"],
+html[data-show="de"] section[lang="de"] { display: block; }
+
+html[data-show] .ribbon { display: none; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg width="30" height="30" viewBox="0 0 120 120" role="img" aria-hidden="true"><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg> <span>DJ Harmonic</span></a>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-set="en" aria-label="English" aria-pressed="false">EN</button>
+      <button type="button" data-set="it" aria-label="Italiano" aria-pressed="false">IT</button>
+      <button type="button" data-set="fr" aria-label="Français" aria-pressed="false">FR</button>
+      <button type="button" data-set="es" aria-label="Español" aria-pressed="false">ES</button>
+      <button type="button" data-set="de" aria-label="Deutsch" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section lang="en">
+  <div class="hero">
+    <svg width="128" height="128" viewBox="0 0 120 120" role="img" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#242232"/><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg>
+    <div>
+      <h1>DJ Harmonic</h1>
+      <p class="tagline">The Camelot wheel, in your pocket.</p>
+      <p class="lead">
+        Pick a track, find out its key, and see at a glance which keys mix with it.
+        DJ Harmonic works entirely on your device: no account, no advertising, nothing to
+        upload.
+      </p>
+      <p class="store"><a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic"><img src="assets/google-play-en.png" alt="Get it on Google Play" width="215" height="83"></a></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>The wheel</h2>
+      <p>Twenty-four sectors, a colour each: tap a key and the compatible ones stay lit
+        while the rest go quiet. Close the lock and only a compatible key can be
+        chosen.</p>
+    </div>
+    <div class="card">
+      <h2>Key detection</h2>
+      <p>Choose a track from the device — mp3, m4a, wav, or flac — and the app reads its
+        tags and works out the key it is in.</p>
+    </div>
+    <div class="card">
+      <h2>Listen while you choose</h2>
+      <p>Play and pause the loaded track without ever leaving the wheel.</p>
+    </div>
+    <div class="card">
+      <h2>Yours alone</h2>
+      <p>Archive and settings stay on the device. Five languages, light and dark theme,
+        both following your phone.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    A paid app, with no advertising. —
+    <a href="privacy-policy.html#en">Privacy policy</a> ·
+    <a href="mailto:privacy@boschin.it">privacy@boschin.it</a>
+  </p>
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="it">
+  <div class="hero">
+    <svg width="128" height="128" viewBox="0 0 120 120" role="img" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#242232"/><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg>
+    <div>
+      <h1>DJ Harmonic</h1>
+      <p class="tagline">La ruota di Camelot, in tasca.</p>
+      <p class="lead">
+        Scegli un brano, scopri in che tonalità è e vedi a colpo d'occhio con quali altre
+        si sposa. DJ Harmonic funziona interamente sul tuo dispositivo: nessun account,
+        nessuna pubblicità, niente da caricare.
+      </p>
+      <p class="store"><a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic"><img src="assets/google-play-it.png" alt="Disponibile su Google Play" width="215" height="83"></a></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>La ruota</h2>
+      <p>Ventiquattro settori, un colore ciascuno: tocchi una tonalità e restano accese
+        quelle compatibili, le altre si spengono. Col lucchetto chiuso si può passare
+        solo a una compatibile.</p>
+    </div>
+    <div class="card">
+      <h2>Analisi della tonalità</h2>
+      <p>Scegli un brano dal dispositivo — mp3, m4a, wav o flac — e l'app ne legge i tag
+        e ne ricava la tonalità.</p>
+    </div>
+    <div class="card">
+      <h2>Ascolti mentre scegli</h2>
+      <p>Avvii e fermi il brano caricato senza mai lasciare la ruota.</p>
+    </div>
+    <div class="card">
+      <h2>Solo tua</h2>
+      <p>Archivio e impostazioni restano sul dispositivo. Cinque lingue, tema chiaro e
+        scuro, entrambi al seguito del telefono.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    Un'app a pagamento, senza pubblicità. —
+    <a href="privacy-policy.html#it">Informativa sulla privacy</a> ·
+    <a href="mailto:privacy@boschin.it">privacy@boschin.it</a>
+  </p>
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="fr">
+  <div class="hero">
+    <svg width="128" height="128" viewBox="0 0 120 120" role="img" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#242232"/><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg>
+    <div>
+      <h1>DJ Harmonic</h1>
+      <p class="tagline">La roue de Camelot, dans votre poche.</p>
+      <p class="lead">
+        Choisissez un morceau, découvrez sa tonalité et voyez d'un coup d'œil celles qui
+        s'y accordent. DJ Harmonic fonctionne entièrement sur votre appareil : aucun
+        compte, aucune publicité, rien à téléverser.
+      </p>
+      <p class="store"><a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic"><img src="assets/google-play-fr.png" alt="Disponible sur Google Play" width="215" height="83"></a></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>La roue</h2>
+      <p>Vingt-quatre secteurs, une couleur chacun : touchez une tonalité et les
+        compatibles restent allumées, les autres s'éteignent. Verrou fermé, seule une
+        tonalité compatible peut être choisie.</p>
+    </div>
+    <div class="card">
+      <h2>Détection de la tonalité</h2>
+      <p>Choisissez un morceau sur l'appareil — mp3, m4a, wav ou flac — et l'application
+        en lit les métadonnées et en déduit la tonalité.</p>
+    </div>
+    <div class="card">
+      <h2>Écouter en choisissant</h2>
+      <p>Lancez et arrêtez le morceau chargé sans jamais quitter la roue.</p>
+    </div>
+    <div class="card">
+      <h2>À vous seul</h2>
+      <p>Bibliothèque et réglages restent sur l'appareil. Cinq langues, thème clair et
+        sombre, l'un comme l'autre à la suite de votre téléphone.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    Une application payante, sans publicité. —
+    <a href="privacy-policy.html#fr">Politique de confidentialité</a> ·
+    <a href="mailto:privacy@boschin.it">privacy@boschin.it</a>
+  </p>
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="es">
+  <div class="hero">
+    <svg width="128" height="128" viewBox="0 0 120 120" role="img" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#242232"/><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg>
+    <div>
+      <h1>DJ Harmonic</h1>
+      <p class="tagline">La rueda de Camelot, en tu bolsillo.</p>
+      <p class="lead">
+        Elige una pista, descubre en qué tonalidad está y ve de un vistazo con cuáles
+        encaja. DJ Harmonic funciona por completo en tu dispositivo: sin cuenta, sin
+        publicidad, sin nada que subir.
+      </p>
+      <p class="store"><a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic"><img src="assets/google-play-es.png" alt="Disponible en Google Play" width="215" height="83"></a></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>La rueda</h2>
+      <p>Veinticuatro sectores, un color cada uno: tocas una tonalidad y permanecen
+        encendidas las compatibles, las demás se apagan. Con el candado cerrado solo se
+        puede pasar a una compatible.</p>
+    </div>
+    <div class="card">
+      <h2>Detección de la tonalidad</h2>
+      <p>Elige una pista del dispositivo — mp3, m4a, wav o flac — y la aplicación lee sus
+        etiquetas y deduce su tonalidad.</p>
+    </div>
+    <div class="card">
+      <h2>Escuchar mientras eliges</h2>
+      <p>Reproduces y pausas la pista cargada sin salir nunca de la rueda.</p>
+    </div>
+    <div class="card">
+      <h2>Solo tuya</h2>
+      <p>El archivo y los ajustes se quedan en el dispositivo. Cinco idiomas, tema claro y
+        oscuro, ambos siguiendo a tu teléfono.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    Una aplicación de pago, sin publicidad. —
+    <a href="privacy-policy.html#es">Política de privacidad</a> ·
+    <a href="mailto:privacy@boschin.it">privacy@boschin.it</a>
+  </p>
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="de">
+  <div class="hero">
+    <svg width="128" height="128" viewBox="0 0 120 120" role="img" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#242232"/><path fill="#95FEBB" d="M60.78 4.01A56 56 0 0 1 87.32 11.12L78.54 26.83A38 38 0 0 0 60.53 22Z"/><path fill="#B5FFF0" d="M60.49 25A35 35 0 0 1 77.08 29.45L68.78 44.29A18 18 0 0 0 60.25 42Z"/><path fill="#ACFD85" d="M88.67 11.9A56 56 0 0 1 108.1 31.33L92.64 40.54A38 38 0 0 0 79.46 27.36Z"/><path fill="#BFFDCE" d="M77.92 29.94A35 35 0 0 1 90.06 42.08L75.46 50.78A18 18 0 0 0 69.22 44.54Z"/><path fill="#C2E775" d="M108.88 32.68A56 56 0 0 1 115.99 59.22L98 59.47A38 38 0 0 0 93.17 41.46Z"/><path fill="#D0FBB3" d="M90.55 42.92A35 35 0 0 1 95 59.51L78 59.75A18 18 0 0 0 75.71 51.22Z"/><path fill="#E1BB72" d="M115.99 60.78A56 56 0 0 1 108.88 87.32L93.17 78.54A38 38 0 0 0 98 60.53Z"/><path fill="#DCECA3" d="M95 60.49A35 35 0 0 1 90.55 77.08L75.71 68.78A18 18 0 0 0 78 60.25Z"/><path fill="#FB9181" d="M108.1 88.67A56 56 0 0 1 88.67 108.1L79.46 92.64A38 38 0 0 0 92.64 79.46Z"/><path fill="#F1CEA8" d="M90.06 77.92A35 35 0 0 1 77.92 90.06L69.22 75.46A18 18 0 0 0 75.46 69.22Z"/><path fill="#FD7E9B" d="M87.32 108.88A56 56 0 0 1 60.78 115.99L60.53 98A38 38 0 0 0 78.54 93.17Z"/><path fill="#FFB3B7" d="M77.08 90.55A35 35 0 0 1 60.49 95L60.25 78A18 18 0 0 0 68.78 75.71Z"/><path fill="#DD7BC4" d="M59.22 115.99A56 56 0 0 1 32.68 108.88L41.46 93.17A38 38 0 0 0 59.47 98Z"/><path fill="#F8B3C8" d="M59.51 95A35 35 0 0 1 42.92 90.55L51.22 75.71A18 18 0 0 0 59.75 78Z"/><path fill="#C47EEE" d="M31.33 108.1A56 56 0 0 1 11.9 88.67L27.36 79.46A38 38 0 0 0 40.54 92.64Z"/><path fill="#EBADDE" d="M42.08 90.06A35 35 0 0 1 29.94 77.92L44.54 69.22A18 18 0 0 0 50.78 75.46Z"/><path fill="#AB88FF" d="M11.12 87.32A56 56 0 0 1 4.01 60.78L22 60.53A38 38 0 0 0 26.83 78.54Z"/><path fill="#D6AEF5" d="M29.45 77.08A35 35 0 0 1 25 60.49L42 60.25A18 18 0 0 0 44.29 68.78Z"/><path fill="#96B6FF" d="M4.01 59.22A56 56 0 0 1 11.12 32.68L26.83 41.46A38 38 0 0 0 22 59.47Z"/><path fill="#C8B8FF" d="M25 59.51A35 35 0 0 1 29.45 42.92L44.29 51.22A18 18 0 0 0 42 59.75Z"/><path fill="#85EAFE" d="M11.9 31.33A56 56 0 0 1 31.33 11.9L40.54 27.36A38 38 0 0 0 27.36 40.54Z"/><path fill="#B7D6FF" d="M29.94 42.08A35 35 0 0 1 42.08 29.94L50.78 44.54A18 18 0 0 0 44.54 50.78Z"/><path fill="#81FFF0" d="M32.68 11.12A56 56 0 0 1 59.22 4.01L59.47 22A38 38 0 0 0 41.46 26.83Z"/><path fill="#ACFBFF" d="M42.92 29.45A35 35 0 0 1 59.51 25L59.75 42A18 18 0 0 0 51.22 44.29Z"/></svg>
+    <div>
+      <h1>DJ Harmonic</h1>
+      <p class="tagline">Das Camelot-Rad, in Ihrer Tasche.</p>
+      <p class="lead">
+        Wählen Sie einen Titel, erfahren Sie seine Tonart und sehen Sie auf einen Blick,
+        welche Tonarten dazu passen. DJ Harmonic läuft vollständig auf Ihrem Gerät: kein
+        Konto, keine Werbung, nichts hochzuladen.
+      </p>
+      <p class="store"><a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic"><img src="assets/google-play-de.png" alt="Jetzt bei Google Play" width="215" height="83"></a></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Das Rad</h2>
+      <p>Vierundzwanzig Sektoren, jeder in eigener Farbe: Tippen Sie eine Tonart an, und
+        die passenden bleiben hell, die übrigen treten zurück. Bei geschlossenem Schloss
+        lässt sich nur zu einer passenden Tonart wechseln.</p>
+    </div>
+    <div class="card">
+      <h2>Tonarterkennung</h2>
+      <p>Wählen Sie einen Titel auf dem Gerät — mp3, m4a, wav oder flac — und die App
+        liest seine Tags und ermittelt seine Tonart.</p>
+    </div>
+    <div class="card">
+      <h2>Hören beim Auswählen</h2>
+      <p>Starten und pausieren Sie den geladenen Titel, ohne das Rad je zu verlassen.</p>
+    </div>
+    <div class="card">
+      <h2>Ganz die Ihre</h2>
+      <p>Archiv und Einstellungen bleiben auf dem Gerät. Fünf Sprachen, helles und dunkles
+        Design, beide dem Telefon folgend.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    Eine kostenpflichtige App, ohne Werbung. —
+    <a href="privacy-policy.html#de">Datenschutzerklärung</a> ·
+    <a href="mailto:privacy@boschin.it">privacy@boschin.it</a>
+  </p>
+</section>
+
+<footer>
+  DJ Harmonic — Andrea Boschin
+</footer>
+
+</main>
+
+<script>
+// Il selettore di lingua: mostra una sola versione e non salva nulla.
+// Senza JavaScript restano visibili tutte e cinque — la pagina non dipende da
+// questo script per dire cio' che deve dire.
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.langs button');
+  var supported = ['en', 'it', 'fr', 'es', 'de'];
+
+  // Le lingue affini sono le stesse di lib/l10n/app_locales.dart: a chi ha il
+  // telefono in portoghese lo spagnolo dice piu' dell'inglese, a un olandese il
+  // tedesco, a un romeno l'italiano. Le scandinave mancano di proposito: li'
+  // l'inglese e' compreso meglio del tedesco.
+  var affinity = {
+    pt: 'es', gl: 'es', ca: 'es', ast: 'es', an: 'es', ext: 'es', eu: 'es',
+    qu: 'es', gn: 'es', ay: 'es',
+
+    ro: 'it', co: 'it', sc: 'it', scn: 'it', nap: 'it', vec: 'it', lmo: 'it',
+    pms: 'it', lij: 'it', fur: 'it', lld: 'it', rm: 'it', mt: 'it',
+
+    oc: 'fr', br: 'fr', wa: 'fr', ht: 'fr', mg: 'fr', wo: 'fr', ln: 'fr',
+    rw: 'fr', sg: 'fr',
+
+    nl: 'de', af: 'de', fy: 'de', nds: 'de', lb: 'de', gsw: 'de', bar: 'de',
+    yi: 'de'
+  };
+
+  function show(lang) {
+    root.dataset.show = lang;
+    root.lang = lang;
+
+    buttons.forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.set === lang));
+    });
+  }
+
+  function code(tag) {
+    return String(tag || '').toLowerCase().split('-')[0];
+  }
+
+  // Come nell'app: si scorre l'elenco due volte, prima cercando una lingua che
+  // abbiamo davvero e solo poi accontentandosi dell'affinita'. Chi ha impostato
+  // olandese e poi inglese vuole l'inglese vero, non il tedesco affine alla sua
+  // prima scelta.
+  function resolve(wanted) {
+    var i;
+
+    for (i = 0; i < wanted.length; i++) {
+      if (supported.indexOf(code(wanted[i])) >= 0) return code(wanted[i]);
+    }
+
+    for (i = 0; i < wanted.length; i++) {
+      if (affinity[code(wanted[i])]) return affinity[code(wanted[i])];
+    }
+
+    return 'en';
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () { show(button.dataset.set); });
+  });
+
+  // L'ancora vince sulla lingua del browser: chi arriva con un link che finisce
+  // per #de ha gia' scelto. Ne' l'una ne' l'altra lascia traccia.
+  var hash = location.hash.replace('#', '');
+  show(supported.indexOf(hash) >= 0
+    ? hash
+    : resolve(navigator.languages || [navigator.language || 'en']));
+})();
+</script>
+
+</body>
+</html>
