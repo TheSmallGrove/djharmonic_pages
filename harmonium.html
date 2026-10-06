@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>harmonium 2.1.1 — the key engine of DJ Harmonic</title>
+<meta name="description" content="harmonium 2.1.1 is the key detection engine inside DJ Harmonic, written from scratch and running on your phone. What it does, how it compares with Mixed In Key, Essentia, libKeyFinder and Queen Mary, and exactly how the test was run.">
+<meta name="theme-color" content="#100E14">
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="harmonium 2.1.1 — the key engine of DJ Harmonic">
+<meta property="og:description" content="What the engine does, an honest comparison with the competitors, and how the test was run.">
+<meta property="og:image" content="assets/icon.png">
+
+<link rel="stylesheet" href="assets/site.css?v=4">
+</head>
+<body>
+
+<header class="topbar topbar--doc" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/icon.png" alt="" width="30" height="30"> <span>DJ Harmonic</span></a>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-set="en" aria-label="English" aria-pressed="false">EN</button>
+      <button type="button" data-set="it" aria-label="Italiano" aria-pressed="false">IT</button>
+      <button type="button" data-set="fr" aria-label="Français" aria-pressed="false">FR</button>
+      <button type="button" data-set="es" aria-label="Español" aria-pressed="false">ES</button>
+      <button type="button" data-set="de" aria-label="Deutsch" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc wrap">
+
+<section lang="en">
+
+  <div class="masthead">
+    <img src="assets/icon.png" alt="" width="104" height="104" style="border-radius:50%">
+    <div>
+      <h1>harmonium 2.1.1</h1>
+      <p class="updated"><strong>The key engine inside DJ Harmonic 1.6 · page updated October 6, 2026</strong></p>
+    </div>
+  </div>
+
+  <div class="short">
+    <h2>In short</h2>
+    <p>
+      harmonium is the key detector DJ Harmonic uses. It was written from scratch for the app,
+      runs entirely on your phone and listens to the whole track.
+    </p>
+    <p>
+      Against human-annotated keys it is <strong>level with the best open-source engines on
+      electronic music</strong>, <strong>level with Essentia and clearly ahead of libKeyFinder and
+      Queen Mary across genres</strong>, and <strong>behind Mixed In Key</strong>, the commercial
+      leader, on every set we measured — by 3 points across genres and by 11 on EDM.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════ cos'e' ══════════════════════════ -->
+  <h2>What it is</h2>
+
+  <p>
+    A key detector answers one question: of the 24 major and minor keys, which one does this
+    track sit in? harmonium answers it in a few steps, all on the device:
+  </p>
+  <ul>
+    <li><strong>The whole track is read</strong>, not a sample of it, and folded to mono.</li>
+    <li><strong>The tuning is estimated first</strong>, so a track recorded a little sharp or flat
+      is not pushed into the neighbouring key.</li>
+    <li><strong>The percussion is filtered out</strong>: drums carry energy everywhere and no pitch,
+      and left in they blur the harmony.</li>
+    <li><strong>What remains is folded into the twelve pitch classes</strong> — how much C, how much
+      C♯, and so on, summed over the whole track, with a light extra weight on the bass register.</li>
+    <li><strong>That profile is compared with a model of each of the 24 keys</strong>, and the
+      closest one is the answer.</li>
+  </ul>
+  <p>
+    Every key harmonium writes carries the version that found it. <strong>2.1.1 gives exactly the
+    same answers as 2.1</strong> — the code changed, the results did not — so keys found by 2.1
+    stay valid and are not analysed again. A version that could change an answer re-analyses the
+    tracks it touched, and only those.
+  </p>
+
+  <!-- ══════════════════════════ confronto ══════════════════════════ -->
+  <h2>How it compares</h2>
+
+  <p>
+    Two kinds of number follow, and they are never added together. The first measures
+    <strong>accuracy</strong>: how often an engine finds the key a person annotated. The second
+    measures <strong>agreement</strong>: how often it says what Mixed In Key says. The first is
+    what matters; the second is what you see when you compare two apps side by side.
+  </p>
+
+  <h3>Accuracy against human annotations</h3>
+
+  <p>Exact key out of 24 — the right tonic and the right mode. No partial credit.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Engine</th><th class="n">GiantSteps<br>EDM · 604</th><th class="n">FMAK<br>multigenre · 1,485</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 11.1<small>commercial, desktop</small></td><td class="n">71.0%</td><td class="n">63.8%</td></tr>
+        <tr><td>Mixed In Key 8.5<small>commercial, desktop</small></td><td class="n">67.3%</td><td class="n">—</td></tr>
+        <tr><td>Essentia 2.1-beta5<small>open source, <code>bgate</code> profile</small></td><td class="n">61.3%</td><td class="n">61.8%</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1<small>DJ Harmonic, on the phone</small></td><td class="n">59.6%</td><td class="n">60.9%</td></tr>
+        <tr><td>libKeyFinder 2.2.8<small>open source, the KeyFinder engine</small></td><td class="n">60.4%</td><td class="n">54.3%</td></tr>
+        <tr><td>Queen Mary<small>open source, as shipped in Mixxx 2.5.6</small></td><td class="n">—</td><td class="n">57.6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">A dash means the engine was not run on that set. Percentages are of all tracks in the set; a track an engine did not answer counts as wrong.</p>
+
+  <p><strong>What the table says, and what it does not:</strong></p>
+  <ul>
+    <li><strong>Mixed In Key is ahead everywhere.</strong> By 11.4 points on EDM and 2.9 across
+      genres. We do not claim otherwise.</li>
+    <li><strong>On EDM, harmonium sits with the open-source engines</strong>, within 2 points of
+      Essentia. Against libKeyFinder, harmonium is right on 58 tracks the other misses and wrong on
+      63 it gets: a difference that is noise (p = 0.72).</li>
+    <li><strong>Across genres, harmonium and Essentia are level</strong> (the 0.9-point gap is not
+      significant, z = 0.94). <strong>Both are clearly ahead of libKeyFinder</strong> (+6.6
+      points for harmonium), and ahead of Queen Mary (+3.3).</li>
+    <li><strong>Major keys in EDM are hard for everyone.</strong> On GiantSteps' 93 major-key
+      tracks no engine reaches half — Mixed In Key 11.1 39.8%, harmonium 41.9%, Essentia 48.4% —
+      and on 28 of them the annotation itself is disputed. Mixed In Key's lead on that set comes
+      from the minor keys.</li>
+  </ul>
+
+  <h3>Agreement with Mixed In Key 11.1</h3>
+
+  <p>
+    1,801 tracks across 50 genres, from Afrobeats to Opera, 18 to 42 per genre, whose reference
+    key is the one Mixed In Key 11.1 wrote. This is <strong>not accuracy</strong>: it says how often
+    an engine names the same key as the market leader, right or wrong.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Engine</th><th class="n">Same key</th><th class="n">Same tonic</th><th class="n">Balanced</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 8.5</td><td class="n">79.2%</td><td class="n">82.3%</td><td class="n">81.6</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1</td><td class="n">74.6%</td><td class="n">78.6%</td><td class="n">78.1</td></tr>
+        <tr><td>libKeyFinder 2.2.8</td><td class="n">70.9%</td><td class="n">73.5%</td><td class="n">67.2</td></tr>
+        <tr><td>Essentia 2.1-beta5</td><td class="n">70.2%</td><td class="n">76.0%</td><td class="n">77.1</td></tr>
+        <tr><td>Queen Mary (Mixxx 2.5.6)</td><td class="n">60.2%</td><td class="n">64.1%</td><td class="n">69.7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><em>Balanced</em> is the average of the agreement on major-key and on minor-key tracks. Mixed In Key 11.1 calls only 24% of these tracks major, fewer than any other engine, so an engine that leans towards minor agrees with it for free; the balanced column removes that advantage.</p>
+
+  <p><strong>Read this table with three cautions:</strong></p>
+  <ul>
+    <li><strong>harmonium starts with an advantage here.</strong> Its key model was fitted on a
+      collection whose keys had been written by Mixed In Key 8. Part of its closeness to Mixed In
+      Key is inherited, not earned.</li>
+    <li><strong>Agreement and accuracy can disagree.</strong> Here harmonium is 4.4 points ahead of
+      Essentia, while against people the two are level. Most of that lead is the mode (major or
+      minor): balanced, it shrinks to 1 point.</li>
+    <li><strong>Mixed In Key does not agree with itself either.</strong> Versions 8.5 and 11.1 give
+      a different key on one track in five. Whoever compares an app with “Mixed In Key” should say
+      which one.</li>
+  </ul>
+
+  <h3>When harmonium is wrong</h3>
+  <p>
+    Six to eight wrong answers in ten are a <strong>near key</strong>: a fifth away, the relative
+    major or minor, or the parallel one — the keys right next to it on the Camelot wheel, which
+    often still mix. Against Mixed In Key 11.1 the share is the same for every engine, Mixed In Key 8.5 included.
+  </p>
+
+  <!-- ══════════════════════════ come e' stato fatto ══════════════════════════ -->
+  <h2>How the test was run</h2>
+
+  <h3>The sets</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Set</th><th class="n">Tracks</th><th>Reference</th><th>Known limits</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GiantSteps Key</td><td class="n">604</td>
+          <td>Human annotations (Knees et al.), electronic dance music</td>
+          <td>EDM only; 85% minor; 28 of its 93 major labels are disputed</td>
+        </tr>
+        <tr>
+          <td>FMAK, one part of it</td><td class="n">1,485</td>
+          <td>Human annotations (Wong &amp; Hernandez, ISMIR 2023, revised labels), many genres, Creative Commons audio</td>
+          <td>Only the first 60 seconds were annotated; tracks judged atonal or modal were left out of the dataset</td>
+        </tr>
+        <tr>
+          <td>50-genre set</td><td class="n">1,801</td>
+          <td>The key written by Mixed In Key 11.1</td>
+          <td>Measures agreement, not accuracy; never used to choose anything</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The engines</h3>
+  <ul>
+    <li><strong>harmonium</strong> ran on a desktop test bench, with the same code the app runs and
+      its shipped settings — no variant, no tuning for the test. One difference: the bench converts
+      every file to 44.1 kHz, the app reads it at its own rate.</li>
+    <li><strong>libKeyFinder 2.2.8</strong> and <strong>Essentia 2.1-beta5</strong> ran unattended
+      from their command-line tools, with default settings. For Essentia we report the
+      <code>bgate</code> profile, the better of the two we tried; the <code>edma</code> profile,
+      designed for EDM, scored lower even on GiantSteps.</li>
+    <li><strong>Mixed In Key 8.5 and 11.1</strong> and <strong>Queen Mary in Mixxx 2.5.6</strong>
+      were run by hand, through their own interfaces. We checked that Mixxx's libKeyFinder gives the
+      same answer as our harness on 99.4% of tracks.</li>
+  </ul>
+
+  <h3>The rules</h3>
+  <ul>
+    <li><strong>Neutral copies.</strong> Every engine run by hand received copies with all tags
+      stripped and the audio untouched, so none of them could read a key already written in the
+      file instead of analysing it.</li>
+    <li><strong>Strict scoring.</strong> Only the exact key out of 24 counts. Near keys are counted
+      separately and never as half right. A missing answer is a wrong answer.</li>
+    <li><strong>Paired comparisons.</strong> Two engines are compared track by track on the same
+      files, and a gap is called a difference only when the paired test says it is not noise.</li>
+    <li><strong>Separate sets, never summed.</strong> An average across EDM, multigenre and
+      agreement would hide exactly what a DJ needs to know.</li>
+    <li><strong>Predictions first.</strong> What we expected each measurement to show was written
+      down before reading it, and the misses are kept on record.</li>
+  </ul>
+
+  <h3>What we disclose</h3>
+  <ul>
+    <li><strong>No set is perfectly blind.</strong> GiantSteps was used during the early development
+      of harmonium, and the FMAK part reported above served as a check during development: a change
+      that made it worse was not shipped. Some early parameters were chosen on GiantSteps. Neither
+      is a set harmonium had never seen.</li>
+    <li><strong>The key model was fitted on Mixed In Key 8's labels</strong>, which favours harmonium
+      on the agreement table (above).</li>
+    <li><strong>Datasets we left out.</strong> We do not publish results on GTZAN, a widely quoted
+      multigenre set: we do not consider its key annotations reliable enough to rank engines.</li>
+    <li><strong>The competitors were run once</strong>, at the versions named above. They are run
+      again when their version changes; harmonium is measured again at every release.</li>
+    <li><strong>Measured on harmonium 2.1</strong>, whose answers are identical to 2.1.1's.</li>
+  </ul>
+
+  <footer>
+    <p>
+      Mixed In Key is a trademark of Mixed In Key LLC. Essentia, libKeyFinder, Mixxx and the Queen
+      Mary Vamp plugins are open-source projects of their respective authors. DJ Harmonic is an
+      independent app and is not affiliated with, endorsed by or sponsored by any of them. Results
+      describe the versions named on this page, on the sets described, and may differ on your
+      music.
+    </p>
+    <p><a href="index.html?lang=en">DJ Harmonic</a> · <a href="privacy-policy.html#en">Privacy policy</a></p>
+  </footer>
+
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="it">
+
+  <div class="masthead">
+    <img src="assets/icon.png" alt="" width="104" height="104" style="border-radius:50%">
+    <div>
+      <h1>harmonium 2.1.1</h1>
+      <p class="updated"><strong>Il motore della tonalità di DJ Harmonic 1.6 · pagina aggiornata il 6 ottobre 2026</strong></p>
+    </div>
+  </div>
+
+  <div class="short">
+    <h2>In breve</h2>
+    <p>
+      harmonium è il motore che DJ Harmonic usa per riconoscere la tonalità. È stato scritto da
+      zero per l’app, lavora interamente sul telefono e ascolta il brano intero.
+    </p>
+    <p>
+      Rispetto a tonalità annotate da persone è <strong>alla pari con i migliori motori open source
+      sulla musica elettronica</strong>, <strong>alla pari con Essentia e nettamente davanti a
+      libKeyFinder e Queen Mary sugli altri generi</strong>, e <strong>dietro a Mixed In Key</strong>,
+      il leader commerciale, su ogni insieme che abbiamo misurato: di 3 punti sui generi misti, di 11
+      sull’EDM.
+    </p>
+  </div>
+
+  <h2>Che cos’è</h2>
+
+  <p>
+    Un riconoscitore di tonalità risponde a una domanda sola: fra le 24 tonalità maggiori e minori,
+    in quale sta questo brano? harmonium ci arriva in pochi passi, tutti sul dispositivo:
+  </p>
+  <ul>
+    <li><strong>Legge il brano intero</strong>, non un campione, e lo riduce a mono.</li>
+    <li><strong>Stima prima l’accordatura</strong>, così un brano registrato un po’ crescente o
+      calante non finisce nella tonalità accanto.</li>
+    <li><strong>Toglie le percussioni</strong>: la batteria ha energia ovunque e nessuna altezza, e
+      lasciata dentro offusca l’armonia.</li>
+    <li><strong>Raccoglie ciò che resta nelle dodici note</strong> — quanto Do, quanto Do♯ e così
+      via — sommate su tutto il brano, con un leggero peso in più sul registro grave.</li>
+    <li><strong>Confronta quel profilo con un modello di ciascuna delle 24 tonalità</strong>, e la più
+      vicina è la risposta.</li>
+  </ul>
+  <p>
+    Ogni tonalità che harmonium scrive porta con sé la versione che l’ha trovata. <strong>La 2.1.1
+    dà esattamente le stesse risposte della 2.1</strong> — è cambiato il codice, non i risultati —
+    quindi le tonalità trovate dalla 2.1 restano valide e non si rianalizzano. Una versione che può
+    cambiare una risposta rianalizza i brani che tocca, e solo quelli.
+  </p>
+
+  <h2>Il confronto</h2>
+
+  <p>
+    Seguono due tipi di numeri, che non si sommano mai. Il primo misura la
+    <strong>precisione</strong>: quante volte un motore trova la tonalità annotata da una persona. Il
+    secondo misura la <strong>concordanza</strong>: quante volte dice ciò che dice Mixed In Key. Il
+    primo è quello che conta; il secondo è quello che vedi quando metti due app una accanto
+    all’altra.
+  </p>
+
+  <h3>Precisione rispetto alle annotazioni umane</h3>
+
+  <p>Tonalità esatta su 24: tonica giusta e modo giusto. Nessun mezzo punto.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Motore</th><th class="n">GiantSteps<br>EDM · 604</th><th class="n">FMAK<br>generi misti · 1.485</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 11.1<small>commerciale, desktop</small></td><td class="n">71,0%</td><td class="n">63,8%</td></tr>
+        <tr><td>Mixed In Key 8.5<small>commerciale, desktop</small></td><td class="n">67,3%</td><td class="n">—</td></tr>
+        <tr><td>Essentia 2.1-beta5<small>open source, profilo <code>bgate</code></small></td><td class="n">61,3%</td><td class="n">61,8%</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1<small>DJ Harmonic, sul telefono</small></td><td class="n">59,6%</td><td class="n">60,9%</td></tr>
+        <tr><td>libKeyFinder 2.2.8<small>open source, il motore di KeyFinder</small></td><td class="n">60,4%</td><td class="n">54,3%</td></tr>
+        <tr><td>Queen Mary<small>open source, come incluso in Mixxx 2.5.6</small></td><td class="n">—</td><td class="n">57,6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Il trattino indica che il motore non è stato provato su quell’insieme. Le percentuali sono su tutti i brani dell’insieme: un brano a cui un motore non risponde conta come sbagliato.</p>
+
+  <p><strong>Cosa dice la tabella, e cosa no:</strong></p>
+  <ul>
+    <li><strong>Mixed In Key è davanti ovunque.</strong> Di 11,4 punti sull’EDM e di 2,9 sui generi
+      misti. Non sosteniamo il contrario.</li>
+    <li><strong>Sull’EDM harmonium sta con i motori open source</strong>, entro 2 punti da Essentia.
+      Contro libKeyFinder, harmonium indovina 58 brani che l’altro sbaglia e ne sbaglia 63 che l’altro
+      indovina: una differenza che è rumore (p = 0,72).</li>
+    <li><strong>Sui generi misti harmonium ed Essentia sono alla pari</strong> (lo scarto di 0,9 punti
+      non è significativo, z = 0,94). <strong>Entrambi sono nettamente davanti a libKeyFinder</strong>
+      (+6,6 punti per harmonium), e davanti a Queen Mary (+3,3).</li>
+    <li><strong>Le tonalità maggiori nell’EDM sono difficili per tutti.</strong> Sui 93 brani maggiori
+      di GiantSteps nessun motore arriva alla metà — Mixed In Key 11.1 39,8%, harmonium 41,9%,
+      Essentia 48,4% — e su 28 di essi è contestata l’annotazione stessa. Il vantaggio di Mixed In Key
+      su quell’insieme viene dalle tonalità minori.</li>
+  </ul>
+
+  <h3>Concordanza con Mixed In Key 11.1</h3>
+
+  <p>
+    1.801 brani di 50 generi, dall’Afrobeats all’opera, da 18 a 42 per genere, la cui tonalità di
+    riferimento è quella scritta da Mixed In Key 11.1. <strong>Non è precisione</strong>: dice quante
+    volte un motore nomina la stessa tonalità del leader di mercato, giusta o sbagliata che sia.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Motore</th><th class="n">Stessa tonalità</th><th class="n">Stessa tonica</th><th class="n">Bilanciata</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 8.5</td><td class="n">79,2%</td><td class="n">82,3%</td><td class="n">81,6</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1</td><td class="n">74,6%</td><td class="n">78,6%</td><td class="n">78,1</td></tr>
+        <tr><td>libKeyFinder 2.2.8</td><td class="n">70,9%</td><td class="n">73,5%</td><td class="n">67,2</td></tr>
+        <tr><td>Essentia 2.1-beta5</td><td class="n">70,2%</td><td class="n">76,0%</td><td class="n">77,1</td></tr>
+        <tr><td>Queen Mary (Mixxx 2.5.6)</td><td class="n">60,2%</td><td class="n">64,1%</td><td class="n">69,7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><em>Bilanciata</em> è la media della concordanza sui brani maggiori e su quelli minori. Mixed In Key 11.1 chiama maggiore solo il 24% di questi brani, meno di qualunque altro motore, quindi un motore che pende verso il minore gli dà ragione gratis; la colonna bilanciata toglie quel vantaggio.</p>
+
+  <p><strong>Leggi questa tabella con tre cautele:</strong></p>
+  <ul>
+    <li><strong>Qui harmonium parte avvantaggiato.</strong> Il suo modello delle tonalità è stato
+      calibrato su una raccolta le cui tonalità erano state scritte da Mixed In Key 8. Parte della sua
+      vicinanza a Mixed In Key è ereditata, non guadagnata.</li>
+    <li><strong>Concordanza e precisione possono non coincidere.</strong> Qui harmonium è 4,4 punti
+      davanti a Essentia, mentre rispetto alle persone i due sono alla pari. Quasi tutto quel vantaggio
+      è il modo (maggiore o minore): nella colonna bilanciata si riduce a 1 punto.</li>
+    <li><strong>Mixed In Key non concorda nemmeno con sé stesso.</strong> Le versioni 8.5 e 11.1
+      danno una tonalità diversa su un brano ogni cinque. Chi confronta un’app con “Mixed In Key”
+      dovrebbe dire quale.</li>
+  </ul>
+
+  <h3>Quando harmonium sbaglia</h3>
+  <p>
+    Da sei a otto risposte sbagliate su dieci sono una <strong>tonalità vicina</strong>: a una quinta
+    di distanza, la relativa maggiore o minore, oppure l’omologa (stessa tonica, modo opposto) — le
+    tonalità subito accanto sulla ruota di Camelot, che spesso si mixano comunque. Rispetto a Mixed In
+    Key 11.1 la quota è la stessa per tutti i motori, Mixed In Key 8.5 compreso.
+  </p>
+
+  <h2>Come è stato condotto il test</h2>
+
+  <h3>Gli insiemi</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Insieme</th><th class="n">Brani</th><th>Riferimento</th><th>Limiti noti</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GiantSteps Key</td><td class="n">604</td>
+          <td>Annotazioni umane (Knees et al.), musica elettronica da ballo</td>
+          <td>Solo EDM; 85% in minore; 28 delle sue 93 etichette maggiori sono contestate</td>
+        </tr>
+        <tr>
+          <td>FMAK, una sua parte</td><td class="n">1.485</td>
+          <td>Annotazioni umane (Wong &amp; Hernandez, ISMIR 2023, etichette riviste), molti generi, audio Creative Commons</td>
+          <td>Annotati solo i primi 60 secondi; i brani giudicati atonali o modali sono stati esclusi dal dataset</td>
+        </tr>
+        <tr>
+          <td>Insieme a 50 generi</td><td class="n">1.801</td>
+          <td>La tonalità scritta da Mixed In Key 11.1</td>
+          <td>Misura la concordanza, non la precisione; non è mai servito a scegliere nulla</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>I motori</h3>
+  <ul>
+    <li><strong>harmonium</strong> è stato eseguito su un banco di prova desktop, con lo stesso codice
+      dell’app e le impostazioni pubblicate: nessuna variante, nessuna messa a punto per il test.
+      Un’unica differenza: il banco converte ogni file a 44,1 kHz, l’app lo legge alla sua frequenza.</li>
+    <li><strong>libKeyFinder 2.2.8</strong> ed <strong>Essentia 2.1-beta5</strong> sono stati eseguiti
+      in automatico dai loro strumenti a riga di comando, con le impostazioni predefinite. Per Essentia
+      riportiamo il profilo <code>bgate</code>, il migliore dei due provati; il profilo
+      <code>edma</code>, pensato per l’EDM, ha fatto peggio perfino su GiantSteps.</li>
+    <li><strong>Mixed In Key 8.5 e 11.1</strong> e <strong>Queen Mary in Mixxx 2.5.6</strong> sono
+      stati eseguiti a mano, dalle loro interfacce. Abbiamo verificato che libKeyFinder dentro Mixxx dà
+      la stessa risposta del nostro banco sul 99,4% dei brani.</li>
+  </ul>
+
+  <h3>Le regole</h3>
+  <ul>
+    <li><strong>Copie neutre.</strong> Ogni motore eseguito a mano ha ricevuto copie senza alcun tag e
+      con l’audio intatto, così nessuno poteva leggere una tonalità già scritta nel file invece di
+      analizzarlo.</li>
+    <li><strong>Punteggio severo.</strong> Conta solo la tonalità esatta su 24. Le tonalità vicine si
+      contano a parte e mai come mezze giuste. Una risposta mancante è una risposta sbagliata.</li>
+    <li><strong>Confronti appaiati.</strong> Due motori si confrontano brano per brano sugli stessi
+      file, e uno scarto si chiama differenza solo quando il test appaiato dice che non è rumore.</li>
+    <li><strong>Insiemi separati, mai sommati.</strong> Una media fra EDM, generi misti e concordanza
+      nasconderebbe proprio ciò che a un DJ serve sapere.</li>
+    <li><strong>Prima le previsioni.</strong> Ciò che ci aspettavamo da ogni misura è stato scritto
+      prima di leggerla, e le previsioni mancate restano agli atti.</li>
+  </ul>
+
+  <h3>Cosa dichiariamo</h3>
+  <ul>
+    <li><strong>Nessun insieme è del tutto “cieco”.</strong> GiantSteps è stato usato nelle prime fasi
+      dello sviluppo di harmonium, e la parte di FMAK riportata sopra ha fatto da controllo durante lo
+      sviluppo: una modifica che la peggiorava non veniva pubblicata. Alcuni dei primi parametri sono
+      stati scelti su GiantSteps. Nessuno dei due è un insieme che harmonium non avesse mai visto.</li>
+    <li><strong>Il modello delle tonalità è stato calibrato sulle etichette di Mixed In Key 8</strong>,
+      e questo favorisce harmonium nella tabella della concordanza (sopra).</li>
+    <li><strong>Dataset lasciati fuori.</strong> Non pubblichiamo risultati su GTZAN, un insieme
+      multigenere molto citato: non riteniamo le sue annotazioni di tonalità abbastanza affidabili per
+      fare una classifica dei motori.</li>
+    <li><strong>I concorrenti sono stati eseguiti una volta</strong>, alle versioni indicate. Si
+      rieseguono quando cambia la loro versione; harmonium si rimisura a ogni rilascio.</li>
+    <li><strong>Misurato su harmonium 2.1</strong>, le cui risposte sono identiche a quelle della
+      2.1.1.</li>
+  </ul>
+
+  <footer>
+    <p>
+      Mixed In Key è un marchio di Mixed In Key LLC. Essentia, libKeyFinder, Mixxx e i plugin Vamp di
+      Queen Mary sono progetti open source dei rispettivi autori. DJ Harmonic è un’app indipendente e
+      non è affiliata, approvata o sponsorizzata da nessuno di loro. I risultati descrivono le versioni
+      indicate in questa pagina, sugli insiemi descritti, e possono essere diversi sulla tua musica.
+    </p>
+    <p><a href="it.html?lang=it">DJ Harmonic</a> · <a href="privacy-policy.html#it">Informativa sulla privacy</a></p>
+  </footer>
+
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="fr">
+
+  <div class="masthead">
+    <img src="assets/icon.png" alt="" width="104" height="104" style="border-radius:50%">
+    <div>
+      <h1>harmonium 2.1.1</h1>
+      <p class="updated"><strong>Le moteur de tonalité de DJ Harmonic 1.6 · page mise à jour le 6 octobre 2026</strong></p>
+    </div>
+  </div>
+
+  <div class="short">
+    <h2>En bref</h2>
+    <p>
+      harmonium est le moteur que DJ Harmonic utilise pour détecter la tonalité. Il a été écrit de
+      zéro pour l’app, fonctionne entièrement sur votre téléphone et écoute le morceau entier.
+    </p>
+    <p>
+      Face à des tonalités annotées par des personnes, il est <strong>au niveau des meilleurs moteurs
+      open source en musique électronique</strong>, <strong>au niveau d’Essentia et nettement devant
+      libKeyFinder et Queen Mary sur les autres genres</strong>, et <strong>derrière Mixed In
+      Key</strong>, le leader commercial, sur chaque ensemble mesuré : de 3 points sur les genres
+      variés, de 11 sur l’EDM.
+    </p>
+  </div>
+
+  <h2>Ce que c’est</h2>
+
+  <p>
+    Un détecteur de tonalité répond à une seule question : parmi les 24 tonalités majeures et
+    mineures, dans laquelle se trouve ce morceau ? harmonium y répond en quelques étapes, toutes sur
+    l’appareil :
+  </p>
+  <ul>
+    <li><strong>Le morceau entier est lu</strong>, pas un extrait, et ramené en mono.</li>
+    <li><strong>L’accordage est estimé d’abord</strong>, pour qu’un morceau enregistré un peu trop
+      haut ou trop bas ne bascule pas dans la tonalité voisine.</li>
+    <li><strong>Les percussions sont filtrées</strong> : la batterie met de l’énergie partout et
+      aucune hauteur, et laissée en place elle brouille l’harmonie.</li>
+    <li><strong>Ce qui reste est réparti entre les douze notes</strong> — combien de do, combien de
+      do♯, et ainsi de suite — additionnées sur tout le morceau, avec un léger poids en plus sur le
+      registre grave.</li>
+    <li><strong>Ce profil est comparé à un modèle de chacune des 24 tonalités</strong>, et la plus
+      proche est la réponse.</li>
+  </ul>
+  <p>
+    Chaque tonalité écrite par harmonium garde la version qui l’a trouvée. <strong>La 2.1.1 donne
+    exactement les mêmes réponses que la 2.1</strong> — le code a changé, pas les résultats — donc
+    les tonalités trouvées par la 2.1 restent valables et ne sont pas réanalysées. Une version qui
+    pourrait changer une réponse réanalyse les morceaux concernés, et seulement ceux-là.
+  </p>
+
+  <h2>La comparaison</h2>
+
+  <p>
+    Deux sortes de chiffres suivent, et elles ne s’additionnent jamais. La première mesure la
+    <strong>précision</strong> : combien de fois un moteur trouve la tonalité annotée par une
+    personne. La seconde mesure la <strong>concordance</strong> : combien de fois il dit la même
+    chose que Mixed In Key. La première est celle qui compte ; la seconde est ce que vous voyez en
+    comparant deux apps côte à côte.
+  </p>
+
+  <h3>Précision face aux annotations humaines</h3>
+
+  <p>Tonalité exacte sur 24 : la bonne tonique et le bon mode. Pas de demi-point.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Moteur</th><th class="n">GiantSteps<br>EDM · 604</th><th class="n">FMAK<br>genres variés · 1 485</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 11.1<small>commercial, ordinateur</small></td><td class="n">71,0 %</td><td class="n">63,8 %</td></tr>
+        <tr><td>Mixed In Key 8.5<small>commercial, ordinateur</small></td><td class="n">67,3 %</td><td class="n">—</td></tr>
+        <tr><td>Essentia 2.1-beta5<small>open source, profil <code>bgate</code></small></td><td class="n">61,3 %</td><td class="n">61,8 %</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1<small>DJ Harmonic, sur le téléphone</small></td><td class="n">59,6 %</td><td class="n">60,9 %</td></tr>
+        <tr><td>libKeyFinder 2.2.8<small>open source, le moteur de KeyFinder</small></td><td class="n">60,4 %</td><td class="n">54,3 %</td></tr>
+        <tr><td>Queen Mary<small>open source, tel qu’inclus dans Mixxx 2.5.6</small></td><td class="n">—</td><td class="n">57,6 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Un tiret signifie que le moteur n’a pas été testé sur cet ensemble. Les pourcentages portent sur tous les morceaux de l’ensemble : un morceau sans réponse compte comme faux.</p>
+
+  <p><strong>Ce que dit le tableau, et ce qu’il ne dit pas :</strong></p>
+  <ul>
+    <li><strong>Mixed In Key est devant partout.</strong> De 11,4 points sur l’EDM et de 2,9 sur les
+      genres variés. Nous ne prétendons pas le contraire.</li>
+    <li><strong>Sur l’EDM, harmonium se situe avec les moteurs open source</strong>, à moins de
+      2 points d’Essentia. Face à libKeyFinder, harmonium trouve 58 morceaux que l’autre manque et en
+      manque 63 que l’autre trouve : une différence qui relève du bruit (p = 0,72).</li>
+    <li><strong>Sur les genres variés, harmonium et Essentia sont au même niveau</strong> (l’écart de
+      0,9 point n’est pas significatif, z = 0,94). <strong>Tous deux sont nettement devant
+      libKeyFinder</strong> (+6,6 points pour harmonium), et devant Queen Mary (+3,3).</li>
+    <li><strong>Les tonalités majeures en EDM sont difficiles pour tout le monde.</strong> Sur les
+      93 morceaux majeurs de GiantSteps, aucun moteur n’atteint la moitié — Mixed In Key 11.1
+      39,8 %, harmonium 41,9 %, Essentia 48,4 % — et pour 28 d’entre eux l’annotation elle-même est
+      contestée. L’avance de Mixed In Key sur cet ensemble vient des tonalités mineures.</li>
+  </ul>
+
+  <h3>Concordance avec Mixed In Key 11.1</h3>
+
+  <p>
+    1 801 morceaux de 50 genres, de l’afrobeats à l’opéra, 18 à 42 par genre, dont la tonalité de
+    référence est celle écrite par Mixed In Key 11.1. <strong>Ce n’est pas de la précision</strong> :
+    cela dit combien de fois un moteur donne la même tonalité que le leader du marché, juste ou
+    fausse.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Moteur</th><th class="n">Même tonalité</th><th class="n">Même tonique</th><th class="n">Équilibrée</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 8.5</td><td class="n">79,2 %</td><td class="n">82,3 %</td><td class="n">81,6</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1</td><td class="n">74,6 %</td><td class="n">78,6 %</td><td class="n">78,1</td></tr>
+        <tr><td>libKeyFinder 2.2.8</td><td class="n">70,9 %</td><td class="n">73,5 %</td><td class="n">67,2</td></tr>
+        <tr><td>Essentia 2.1-beta5</td><td class="n">70,2 %</td><td class="n">76,0 %</td><td class="n">77,1</td></tr>
+        <tr><td>Queen Mary (Mixxx 2.5.6)</td><td class="n">60,2 %</td><td class="n">64,1 %</td><td class="n">69,7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><em>Équilibrée</em> est la moyenne de la concordance sur les morceaux majeurs et sur les morceaux mineurs. Mixed In Key 11.1 ne déclare majeurs que 24 % de ces morceaux, moins que tout autre moteur : un moteur qui penche vers le mineur s’accorde avec lui gratuitement, et la colonne équilibrée retire cet avantage.</p>
+
+  <p><strong>Trois précautions pour lire ce tableau :</strong></p>
+  <ul>
+    <li><strong>Ici, harmonium part avec un avantage.</strong> Son modèle des tonalités a été ajusté
+      sur une collection dont les tonalités avaient été écrites par Mixed In Key 8. Une partie de sa
+      proximité avec Mixed In Key est héritée, pas méritée.</li>
+    <li><strong>Concordance et précision peuvent diverger.</strong> Ici harmonium devance Essentia de
+      4,4 points, alors que face aux personnes les deux sont au même niveau. L’essentiel de cette
+      avance tient au mode (majeur ou mineur) : en équilibrée, elle tombe à 1 point.</li>
+    <li><strong>Mixed In Key n’est pas d’accord avec lui-même non plus.</strong> Les versions 8.5 et
+      11.1 donnent une tonalité différente sur un morceau sur cinq. Qui compare une app à « Mixed In
+      Key » devrait préciser laquelle.</li>
+  </ul>
+
+  <h3>Quand harmonium se trompe</h3>
+  <p>
+    Six à huit mauvaises réponses sur dix sont une <strong>tonalité voisine</strong> : à une quinte,
+    la relative majeure ou mineure, ou l’homonyme (même tonique, mode opposé) — les tonalités juste à
+    côté sur la roue de Camelot, qui souvent se mixent quand même. Face à Mixed In Key 11.1, la part
+    est la même pour tous les moteurs, Mixed In Key 8.5 compris.
+  </p>
+
+  <h2>Comment le test a été mené</h2>
+
+  <h3>Les ensembles</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Ensemble</th><th class="n">Morceaux</th><th>Référence</th><th>Limites connues</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GiantSteps Key</td><td class="n">604</td>
+          <td>Annotations humaines (Knees et al.), musique électronique de danse</td>
+          <td>EDM uniquement ; 85 % en mineur ; 28 de ses 93 étiquettes majeures sont contestées</td>
+        </tr>
+        <tr>
+          <td>FMAK, une partie</td><td class="n">1 485</td>
+          <td>Annotations humaines (Wong &amp; Hernandez, ISMIR 2023, étiquettes révisées), nombreux genres, audio Creative Commons</td>
+          <td>Seules les 60 premières secondes sont annotées ; les morceaux jugés atonaux ou modaux ont été exclus du dataset</td>
+        </tr>
+        <tr>
+          <td>Ensemble à 50 genres</td><td class="n">1 801</td>
+          <td>La tonalité écrite par Mixed In Key 11.1</td>
+          <td>Mesure la concordance, pas la précision ; n’a jamais servi à choisir quoi que ce soit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Les moteurs</h3>
+  <ul>
+    <li><strong>harmonium</strong> a tourné sur un banc d’essai sur ordinateur, avec le même code que
+      l’app et ses réglages publiés — aucune variante, aucun réglage pour le test. Une seule
+      différence : le banc convertit chaque fichier en 44,1 kHz, l’app le lit à sa propre fréquence.</li>
+    <li><strong>libKeyFinder 2.2.8</strong> et <strong>Essentia 2.1-beta5</strong> ont tourné sans
+      intervention, depuis leurs outils en ligne de commande, avec les réglages par défaut. Pour
+      Essentia nous indiquons le profil <code>bgate</code>, le meilleur des deux essayés ; le profil
+      <code>edma</code>, conçu pour l’EDM, a fait moins bien même sur GiantSteps.</li>
+    <li><strong>Mixed In Key 8.5 et 11.1</strong> et <strong>Queen Mary dans Mixxx 2.5.6</strong> ont
+      été lancés à la main, depuis leurs propres interfaces. Nous avons vérifié que libKeyFinder dans
+      Mixxx donne la même réponse que notre banc sur 99,4 % des morceaux.</li>
+  </ul>
+
+  <h3>Les règles</h3>
+  <ul>
+    <li><strong>Copies neutres.</strong> Chaque moteur lancé à la main a reçu des copies sans aucun
+      tag et avec l’audio intact, pour qu’aucun ne puisse lire une tonalité déjà écrite dans le
+      fichier au lieu de l’analyser.</li>
+    <li><strong>Notation stricte.</strong> Seule la tonalité exacte sur 24 compte. Les tonalités
+      voisines sont comptées à part, jamais comme à moitié justes. Une réponse manquante est une
+      mauvaise réponse.</li>
+    <li><strong>Comparaisons appariées.</strong> Deux moteurs sont comparés morceau par morceau sur
+      les mêmes fichiers, et un écart n’est appelé différence que si le test apparié dit que ce n’est
+      pas du bruit.</li>
+    <li><strong>Ensembles séparés, jamais additionnés.</strong> Une moyenne entre EDM, genres variés
+      et concordance cacherait justement ce qu’un DJ a besoin de savoir.</li>
+    <li><strong>Les prédictions d’abord.</strong> Ce que nous attendions de chaque mesure a été écrit
+      avant de la lire, et les prédictions manquées restent consignées.</li>
+  </ul>
+
+  <h3>Ce que nous déclarons</h3>
+  <ul>
+    <li><strong>Aucun ensemble n’est parfaitement « aveugle ».</strong> GiantSteps a servi au début
+      du développement d’harmonium, et la partie de FMAK présentée ci-dessus a servi de contrôle
+      pendant le développement : une modification qui la dégradait n’était pas publiée. Certains des
+      premiers paramètres ont été choisis sur GiantSteps. Ni l’un ni l’autre n’est un ensemble
+      qu’harmonium n’avait jamais vu.</li>
+    <li><strong>Le modèle des tonalités a été ajusté sur les étiquettes de Mixed In Key 8</strong>,
+      ce qui favorise harmonium dans le tableau de concordance (ci-dessus).</li>
+    <li><strong>Datasets écartés.</strong> Nous ne publions pas de résultats sur GTZAN, un ensemble
+      multigenre très cité : nous ne jugeons pas ses annotations de tonalité assez fiables pour
+      classer des moteurs.</li>
+    <li><strong>Les concurrents ont été lancés une fois</strong>, aux versions indiquées. Ils sont
+      relancés quand leur version change ; harmonium est remesuré à chaque version.</li>
+    <li><strong>Mesuré sur harmonium 2.1</strong>, dont les réponses sont identiques à celles de la
+      2.1.1.</li>
+  </ul>
+
+  <footer>
+    <p>
+      Mixed In Key est une marque de Mixed In Key LLC. Essentia, libKeyFinder, Mixxx et les plugins
+      Vamp de Queen Mary sont des projets open source de leurs auteurs respectifs. DJ Harmonic est une
+      app indépendante, ni affiliée à aucun d’eux, ni approuvée ou sponsorisée par aucun d’eux. Les
+      résultats décrivent les versions nommées sur cette page, sur les ensembles décrits, et peuvent
+      différer sur votre musique.
+    </p>
+    <p><a href="fr.html?lang=fr">DJ Harmonic</a> · <a href="privacy-policy.html#fr">Politique de confidentialité</a></p>
+  </footer>
+
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="es">
+
+  <div class="masthead">
+    <img src="assets/icon.png" alt="" width="104" height="104" style="border-radius:50%">
+    <div>
+      <h1>harmonium 2.1.1</h1>
+      <p class="updated"><strong>El motor de tonalidad de DJ Harmonic 1.6 · página actualizada el 6 de octubre de 2026</strong></p>
+    </div>
+  </div>
+
+  <div class="short">
+    <h2>En resumen</h2>
+    <p>
+      harmonium es el motor que DJ Harmonic usa para detectar la tonalidad. Se escribió desde cero
+      para la app, funciona por completo en tu teléfono y escucha la pista entera.
+    </p>
+    <p>
+      Frente a tonalidades anotadas por personas, está <strong>a la par de los mejores motores de
+      código abierto en música electrónica</strong>, <strong>a la par de Essentia y claramente por
+      delante de libKeyFinder y Queen Mary en otros géneros</strong>, y <strong>por detrás de Mixed In
+      Key</strong>, el líder comercial, en todos los conjuntos que medimos: por 3 puntos en géneros
+      variados y por 11 en EDM.
+    </p>
+  </div>
+
+  <h2>Qué es</h2>
+
+  <p>
+    Un detector de tonalidad responde a una sola pregunta: de las 24 tonalidades mayores y menores,
+    ¿en cuál está esta pista? harmonium llega a la respuesta en unos pocos pasos, todos en el
+    dispositivo:
+  </p>
+  <ul>
+    <li><strong>Lee la pista entera</strong>, no un fragmento, y la pasa a mono.</li>
+    <li><strong>Primero estima la afinación</strong>, para que una pista grabada algo alta o baja no
+      acabe en la tonalidad de al lado.</li>
+    <li><strong>Filtra la percusión</strong>: la batería pone energía en todas partes y ninguna
+      altura, y si se deja dentro emborrona la armonía.</li>
+    <li><strong>Reparte lo que queda entre las doce notas</strong> — cuánto do, cuánto do♯, y así
+      sucesivamente — sumadas a lo largo de toda la pista, con un ligero peso extra en el registro
+      grave.</li>
+    <li><strong>Compara ese perfil con un modelo de cada una de las 24 tonalidades</strong>, y la más
+      cercana es la respuesta.</li>
+  </ul>
+  <p>
+    Cada tonalidad que escribe harmonium lleva la versión que la encontró. <strong>La 2.1.1 da
+    exactamente las mismas respuestas que la 2.1</strong> — cambió el código, no los resultados —, así
+    que las tonalidades halladas por la 2.1 siguen siendo válidas y no se vuelven a analizar. Una
+    versión que pueda cambiar una respuesta reanaliza las pistas afectadas, y solo esas.
+  </p>
+
+  <h2>La comparación</h2>
+
+  <p>
+    A continuación hay dos tipos de cifras, y nunca se suman. La primera mide la
+    <strong>precisión</strong>: cuántas veces un motor encuentra la tonalidad que anotó una persona.
+    La segunda mide la <strong>coincidencia</strong>: cuántas veces dice lo mismo que Mixed In Key. La
+    primera es la que importa; la segunda es lo que ves al poner dos apps una al lado de la otra.
+  </p>
+
+  <h3>Precisión frente a anotaciones humanas</h3>
+
+  <p>Tonalidad exacta entre 24: la tónica correcta y el modo correcto. Sin medios puntos.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Motor</th><th class="n">GiantSteps<br>EDM · 604</th><th class="n">FMAK<br>géneros variados · 1485</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 11.1<small>comercial, escritorio</small></td><td class="n">71,0 %</td><td class="n">63,8 %</td></tr>
+        <tr><td>Mixed In Key 8.5<small>comercial, escritorio</small></td><td class="n">67,3 %</td><td class="n">—</td></tr>
+        <tr><td>Essentia 2.1-beta5<small>código abierto, perfil <code>bgate</code></small></td><td class="n">61,3 %</td><td class="n">61,8 %</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1<small>DJ Harmonic, en el teléfono</small></td><td class="n">59,6 %</td><td class="n">60,9 %</td></tr>
+        <tr><td>libKeyFinder 2.2.8<small>código abierto, el motor de KeyFinder</small></td><td class="n">60,4 %</td><td class="n">54,3 %</td></tr>
+        <tr><td>Queen Mary<small>código abierto, tal como viene en Mixxx 2.5.6</small></td><td class="n">—</td><td class="n">57,6 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Un guion indica que el motor no se probó en ese conjunto. Los porcentajes son sobre todas las pistas del conjunto: una pista sin respuesta cuenta como fallo.</p>
+
+  <p><strong>Lo que dice la tabla, y lo que no:</strong></p>
+  <ul>
+    <li><strong>Mixed In Key va por delante en todo.</strong> Por 11,4 puntos en EDM y por 2,9 en
+      géneros variados. No decimos lo contrario.</li>
+    <li><strong>En EDM, harmonium está con los motores de código abierto</strong>, a menos de 2 puntos
+      de Essentia. Frente a libKeyFinder, harmonium acierta 58 pistas que el otro falla y falla 63 que
+      el otro acierta: una diferencia que es ruido (p = 0,72).</li>
+    <li><strong>En géneros variados, harmonium y Essentia están a la par</strong> (la diferencia de
+      0,9 puntos no es significativa, z = 0,94). <strong>Ambos están claramente por delante de
+      libKeyFinder</strong> (+6,6 puntos para harmonium), y por delante de Queen Mary (+3,3).</li>
+    <li><strong>Las tonalidades mayores en EDM son difíciles para todos.</strong> En las 93 pistas
+      mayores de GiantSteps ningún motor llega a la mitad — Mixed In Key 11.1 39,8 %, harmonium
+      41,9 %, Essentia 48,4 % — y en 28 de ellas la propia anotación está en disputa. La ventaja de
+      Mixed In Key en ese conjunto viene de las tonalidades menores.</li>
+  </ul>
+
+  <h3>Coincidencia con Mixed In Key 11.1</h3>
+
+  <p>
+    1801 pistas de 50 géneros, del afrobeats a la ópera, de 18 a 42 por género, cuya tonalidad de
+    referencia es la que escribió Mixed In Key 11.1. <strong>No es precisión</strong>: dice cuántas
+    veces un motor da la misma tonalidad que el líder del mercado, acierte o no.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Motor</th><th class="n">Misma tonalidad</th><th class="n">Misma tónica</th><th class="n">Equilibrada</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 8.5</td><td class="n">79,2 %</td><td class="n">82,3 %</td><td class="n">81,6</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1</td><td class="n">74,6 %</td><td class="n">78,6 %</td><td class="n">78,1</td></tr>
+        <tr><td>libKeyFinder 2.2.8</td><td class="n">70,9 %</td><td class="n">73,5 %</td><td class="n">67,2</td></tr>
+        <tr><td>Essentia 2.1-beta5</td><td class="n">70,2 %</td><td class="n">76,0 %</td><td class="n">77,1</td></tr>
+        <tr><td>Queen Mary (Mixxx 2.5.6)</td><td class="n">60,2 %</td><td class="n">64,1 %</td><td class="n">69,7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><em>Equilibrada</em> es la media de la coincidencia en las pistas mayores y en las menores. Mixed In Key 11.1 llama mayor solo al 24 % de estas pistas, menos que cualquier otro motor, así que un motor que se inclina hacia el menor coincide con él gratis; la columna equilibrada quita esa ventaja.</p>
+
+  <p><strong>Lee esta tabla con tres precauciones:</strong></p>
+  <ul>
+    <li><strong>Aquí harmonium parte con ventaja.</strong> Su modelo de tonalidades se ajustó sobre una
+      colección cuyas tonalidades había escrito Mixed In Key 8. Parte de su cercanía a Mixed In Key es
+      heredada, no ganada.</li>
+    <li><strong>Coincidencia y precisión pueden no coincidir.</strong> Aquí harmonium supera a Essentia
+      en 4,4 puntos, mientras que frente a las personas los dos están a la par. Casi toda esa ventaja
+      es el modo (mayor o menor): en la columna equilibrada se reduce a 1 punto.</li>
+    <li><strong>Mixed In Key tampoco coincide consigo mismo.</strong> Las versiones 8.5 y 11.1 dan una
+      tonalidad distinta en una pista de cada cinco. Quien compare una app con «Mixed In Key» debería
+      decir con cuál.</li>
+  </ul>
+
+  <h3>Cuando harmonium se equivoca</h3>
+  <p>
+    Entre seis y ocho de cada diez respuestas erróneas son una <strong>tonalidad cercana</strong>: a
+    una quinta, la relativa mayor o menor, o la homónima (misma tónica, modo opuesto) — las
+    tonalidades justo al lado en la rueda de Camelot, que a menudo mezclan igualmente. Frente a Mixed
+    In Key 11.1 la proporción es la misma para todos los motores, Mixed In Key 8.5 incluido.
+  </p>
+
+  <h2>Cómo se hizo la prueba</h2>
+
+  <h3>Los conjuntos</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Conjunto</th><th class="n">Pistas</th><th>Referencia</th><th>Límites conocidos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GiantSteps Key</td><td class="n">604</td>
+          <td>Anotaciones humanas (Knees et al.), música electrónica de baile</td>
+          <td>Solo EDM; 85 % en menor; 28 de sus 93 etiquetas mayores están en disputa</td>
+        </tr>
+        <tr>
+          <td>FMAK, una parte</td><td class="n">1485</td>
+          <td>Anotaciones humanas (Wong &amp; Hernandez, ISMIR 2023, etiquetas revisadas), muchos géneros, audio Creative Commons</td>
+          <td>Solo se anotaron los primeros 60 segundos; las pistas consideradas atonales o modales quedaron fuera del dataset</td>
+        </tr>
+        <tr>
+          <td>Conjunto de 50 géneros</td><td class="n">1801</td>
+          <td>La tonalidad escrita por Mixed In Key 11.1</td>
+          <td>Mide la coincidencia, no la precisión; nunca se usó para elegir nada</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Los motores</h3>
+  <ul>
+    <li><strong>harmonium</strong> se ejecutó en un banco de pruebas de escritorio, con el mismo código
+      que la app y sus ajustes publicados: ninguna variante, ningún ajuste para la prueba. Una sola
+      diferencia: el banco convierte cada archivo a 44,1 kHz, la app lo lee a su propia frecuencia.</li>
+    <li><strong>libKeyFinder 2.2.8</strong> y <strong>Essentia 2.1-beta5</strong> se ejecutaron sin
+      intervención, desde sus herramientas de línea de comandos, con los ajustes predeterminados. Para
+      Essentia damos el perfil <code>bgate</code>, el mejor de los dos que probamos; el perfil
+      <code>edma</code>, pensado para EDM, puntuó más bajo incluso en GiantSteps.</li>
+    <li><strong>Mixed In Key 8.5 y 11.1</strong> y <strong>Queen Mary en Mixxx 2.5.6</strong> se
+      ejecutaron a mano, desde sus propias interfaces. Comprobamos que libKeyFinder dentro de Mixxx da
+      la misma respuesta que nuestro banco en el 99,4 % de las pistas.</li>
+  </ul>
+
+  <h3>Las reglas</h3>
+  <ul>
+    <li><strong>Copias neutras.</strong> Cada motor ejecutado a mano recibió copias sin ninguna
+      etiqueta y con el audio intacto, para que ninguno pudiera leer una tonalidad ya escrita en el
+      archivo en lugar de analizarlo.</li>
+    <li><strong>Puntuación estricta.</strong> Solo cuenta la tonalidad exacta entre 24. Las tonalidades
+      cercanas se cuentan aparte y nunca como medio acierto. Una respuesta que falta es una respuesta
+      errónea.</li>
+    <li><strong>Comparaciones emparejadas.</strong> Dos motores se comparan pista por pista sobre los
+      mismos archivos, y una diferencia solo se llama así cuando la prueba emparejada dice que no es
+      ruido.</li>
+    <li><strong>Conjuntos separados, nunca sumados.</strong> Una media entre EDM, géneros variados y
+      coincidencia ocultaría justo lo que un DJ necesita saber.</li>
+    <li><strong>Primero las predicciones.</strong> Lo que esperábamos de cada medición se escribió antes
+      de leerla, y las predicciones fallidas quedan registradas.</li>
+  </ul>
+
+  <h3>Lo que declaramos</h3>
+  <ul>
+    <li><strong>Ningún conjunto es del todo «ciego».</strong> GiantSteps se usó en las primeras fases
+      del desarrollo de harmonium, y la parte de FMAK que mostramos arriba sirvió de control durante el
+      desarrollo: un cambio que la empeoraba no se publicaba. Algunos de los primeros parámetros se
+      eligieron sobre GiantSteps. Ninguno de los dos es un conjunto que harmonium no hubiera visto
+      nunca.</li>
+    <li><strong>El modelo de tonalidades se ajustó sobre las etiquetas de Mixed In Key 8</strong>, lo
+      que favorece a harmonium en la tabla de coincidencia (arriba).</li>
+    <li><strong>Datasets que dejamos fuera.</strong> No publicamos resultados sobre GTZAN, un conjunto
+      multigénero muy citado: no consideramos sus anotaciones de tonalidad lo bastante fiables para
+      clasificar motores.</li>
+    <li><strong>Los competidores se ejecutaron una vez</strong>, en las versiones indicadas. Se vuelven
+      a ejecutar cuando cambia su versión; harmonium se vuelve a medir en cada lanzamiento.</li>
+    <li><strong>Medido sobre harmonium 2.1</strong>, cuyas respuestas son idénticas a las de la
+      2.1.1.</li>
+  </ul>
+
+  <footer>
+    <p>
+      Mixed In Key es una marca de Mixed In Key LLC. Essentia, libKeyFinder, Mixxx y los plugins Vamp
+      de Queen Mary son proyectos de código abierto de sus respectivos autores. DJ Harmonic es una app
+      independiente y no está afiliada, respaldada ni patrocinada por ninguno de ellos. Los resultados
+      describen las versiones nombradas en esta página, sobre los conjuntos descritos, y pueden ser
+      distintos con tu música.
+    </p>
+    <p><a href="es.html?lang=es">DJ Harmonic</a> · <a href="privacy-policy.html#es">Política de privacidad</a></p>
+  </footer>
+
+</section>
+
+<div class="ribbon" aria-hidden="true"><span style="background:#95FEBB"></span><span style="background:#ACFD85"></span><span style="background:#C2E775"></span><span style="background:#E1BB72"></span><span style="background:#FB9181"></span><span style="background:#FD7E9B"></span><span style="background:#DD7BC4"></span><span style="background:#C47EEE"></span><span style="background:#AB88FF"></span><span style="background:#96B6FF"></span><span style="background:#85EAFE"></span><span style="background:#81FFF0"></span><span style="background:#ACFBFF"></span><span style="background:#B7D6FF"></span><span style="background:#C8B8FF"></span><span style="background:#D6AEF5"></span><span style="background:#EBADDE"></span><span style="background:#F8B3C8"></span><span style="background:#FFB3B7"></span><span style="background:#F1CEA8"></span><span style="background:#DCECA3"></span><span style="background:#D0FBB3"></span><span style="background:#BFFDCE"></span><span style="background:#B5FFF0"></span></div>
+
+<section lang="de">
+
+  <div class="masthead">
+    <img src="assets/icon.png" alt="" width="104" height="104" style="border-radius:50%">
+    <div>
+      <h1>harmonium 2.1.1</h1>
+      <p class="updated"><strong>Die Tonart-Engine von DJ Harmonic 1.6 · Seite aktualisiert am 6. Oktober 2026</strong></p>
+    </div>
+  </div>
+
+  <div class="short">
+    <h2>Kurz gesagt</h2>
+    <p>
+      harmonium ist die Engine, mit der DJ Harmonic die Tonart erkennt. Sie wurde für die App von
+      Grund auf neu geschrieben, läuft vollständig auf Ihrem Telefon und hört den ganzen Titel.
+    </p>
+    <p>
+      Gemessen an Tonarten, die Menschen annotiert haben, liegt sie <strong>bei elektronischer Musik
+      gleichauf mit den besten Open-Source-Engines</strong>, <strong>genreübergreifend gleichauf mit
+      Essentia und deutlich vor libKeyFinder und Queen Mary</strong>, und <strong>hinter Mixed In
+      Key</strong>, dem kommerziellen Marktführer, auf jedem Datensatz, den wir gemessen haben: um
+      3 Punkte genreübergreifend und um 11 bei EDM.
+    </p>
+  </div>
+
+  <h2>Was sie ist</h2>
+
+  <p>
+    Eine Tonarterkennung beantwortet eine einzige Frage: In welcher der 24 Dur- und Molltonarten steht
+    dieser Titel? harmonium beantwortet sie in wenigen Schritten, alle auf dem Gerät:
+  </p>
+  <ul>
+    <li><strong>Der ganze Titel wird gelesen</strong>, nicht nur ein Ausschnitt, und auf Mono
+      heruntergerechnet.</li>
+    <li><strong>Zuerst wird die Stimmung geschätzt</strong>, damit ein etwas zu hoch oder zu tief
+      aufgenommener Titel nicht in der Nachbartonart landet.</li>
+    <li><strong>Das Schlagzeug wird herausgefiltert</strong>: Es hat überall Energie und keine
+      Tonhöhe, und wenn es drin bleibt, verwischt es die Harmonie.</li>
+    <li><strong>Der Rest wird auf die zwölf Tonklassen verteilt</strong> — wie viel C, wie viel C♯
+      und so weiter —, summiert über den ganzen Titel, mit etwas zusätzlichem Gewicht auf dem
+      Bassregister.</li>
+    <li><strong>Dieses Profil wird mit einem Modell jeder der 24 Tonarten verglichen</strong>, und die
+      nächstliegende ist die Antwort.</li>
+  </ul>
+  <p>
+    Jede Tonart, die harmonium schreibt, trägt die Version, die sie gefunden hat. <strong>2.1.1 gibt
+    genau dieselben Antworten wie 2.1</strong> — der Code hat sich geändert, die Ergebnisse nicht —,
+    daher bleiben die von 2.1 gefundenen Tonarten gültig und werden nicht neu analysiert. Eine Version,
+    die eine Antwort ändern könnte, analysiert die betroffenen Titel neu, und nur diese.
+  </p>
+
+  <h2>Der Vergleich</h2>
+
+  <p>
+    Es folgen zwei Arten von Zahlen, und sie werden nie zusammengezählt. Die erste misst die
+    <strong>Genauigkeit</strong>: wie oft eine Engine die Tonart findet, die ein Mensch annotiert hat.
+    Die zweite misst die <strong>Übereinstimmung</strong>: wie oft sie dasselbe sagt wie Mixed In Key.
+    Die erste ist die, die zählt; die zweite ist das, was Sie sehen, wenn Sie zwei Apps nebeneinander
+    vergleichen.
+  </p>
+
+  <h3>Genauigkeit gegenüber menschlichen Annotationen</h3>
+
+  <p>Exakte Tonart aus 24: richtiger Grundton und richtiges Tongeschlecht. Keine halben Punkte.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Engine</th><th class="n">GiantSteps<br>EDM · 604</th><th class="n">FMAK<br>gemischte Genres · 1.485</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 11.1<small>kommerziell, Desktop</small></td><td class="n">71,0 %</td><td class="n">63,8 %</td></tr>
+        <tr><td>Mixed In Key 8.5<small>kommerziell, Desktop</small></td><td class="n">67,3 %</td><td class="n">—</td></tr>
+        <tr><td>Essentia 2.1-beta5<small>Open Source, Profil <code>bgate</code></small></td><td class="n">61,3 %</td><td class="n">61,8 %</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1<small>DJ Harmonic, auf dem Telefon</small></td><td class="n">59,6 %</td><td class="n">60,9 %</td></tr>
+        <tr><td>libKeyFinder 2.2.8<small>Open Source, die Engine von KeyFinder</small></td><td class="n">60,4 %</td><td class="n">54,3 %</td></tr>
+        <tr><td>Queen Mary<small>Open Source, wie in Mixxx 2.5.6 enthalten</small></td><td class="n">—</td><td class="n">57,6 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Ein Strich bedeutet, dass die Engine auf diesem Datensatz nicht getestet wurde. Die Prozentwerte beziehen sich auf alle Titel des Datensatzes: Ein Titel ohne Antwort zählt als falsch.</p>
+
+  <p><strong>Was die Tabelle sagt, und was nicht:</strong></p>
+  <ul>
+    <li><strong>Mixed In Key liegt überall vorn.</strong> Um 11,4 Punkte bei EDM und um 2,9
+      genreübergreifend. Wir behaupten nichts anderes.</li>
+    <li><strong>Bei EDM liegt harmonium bei den Open-Source-Engines</strong>, weniger als 2 Punkte
+      hinter Essentia. Gegenüber libKeyFinder trifft harmonium 58 Titel, die die andere verfehlt, und
+      verfehlt 63, die die andere trifft: ein Unterschied, der Rauschen ist (p = 0,72).</li>
+    <li><strong>Genreübergreifend liegen harmonium und Essentia gleichauf</strong> (der Abstand von
+      0,9 Punkten ist nicht signifikant, z = 0,94). <strong>Beide liegen deutlich vor
+      libKeyFinder</strong> (+6,6 Punkte für harmonium) und vor Queen Mary (+3,3).</li>
+    <li><strong>Durtonarten in EDM sind für alle schwer.</strong> Bei den 93 Dur-Titeln von GiantSteps
+      erreicht keine Engine die Hälfte — Mixed In Key 11.1 39,8 %, harmonium 41,9 %, Essentia
+      48,4 % —, und bei 28 davon ist schon die Annotation umstritten. Der Vorsprung von Mixed In Key
+      auf diesem Datensatz kommt aus den Molltonarten.</li>
+  </ul>
+
+  <h3>Übereinstimmung mit Mixed In Key 11.1</h3>
+
+  <p>
+    1.801 Titel aus 50 Genres, von Afrobeats bis Oper, 18 bis 42 pro Genre, deren Referenztonart die
+    von Mixed In Key 11.1 geschriebene ist. <strong>Das ist keine Genauigkeit</strong>: Es sagt, wie
+    oft eine Engine dieselbe Tonart nennt wie der Marktführer, ob richtig oder falsch.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Engine</th><th class="n">Gleiche Tonart</th><th class="n">Gleicher Grundton</th><th class="n">Ausgewogen</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mixed In Key 8.5</td><td class="n">79,2 %</td><td class="n">82,3 %</td><td class="n">81,6</td></tr>
+        <tr class="ours"><td>harmonium 2.1.1</td><td class="n">74,6 %</td><td class="n">78,6 %</td><td class="n">78,1</td></tr>
+        <tr><td>libKeyFinder 2.2.8</td><td class="n">70,9 %</td><td class="n">73,5 %</td><td class="n">67,2</td></tr>
+        <tr><td>Essentia 2.1-beta5</td><td class="n">70,2 %</td><td class="n">76,0 %</td><td class="n">77,1</td></tr>
+        <tr><td>Queen Mary (Mixxx 2.5.6)</td><td class="n">60,2 %</td><td class="n">64,1 %</td><td class="n">69,7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><em>Ausgewogen</em> ist der Mittelwert der Übereinstimmung auf Dur- und auf Moll-Titeln. Mixed In Key 11.1 nennt nur 24 % dieser Titel Dur, weniger als jede andere Engine; eine Engine, die zu Moll neigt, stimmt deshalb umsonst mit ihr überein. Die ausgewogene Spalte nimmt diesen Vorteil heraus.</p>
+
+  <p><strong>Lesen Sie diese Tabelle mit drei Vorbehalten:</strong></p>
+  <ul>
+    <li><strong>Hier startet harmonium mit einem Vorteil.</strong> Sein Tonartmodell wurde an einer
+      Sammlung angepasst, deren Tonarten Mixed In Key 8 geschrieben hatte. Ein Teil seiner Nähe zu
+      Mixed In Key ist geerbt, nicht verdient.</li>
+    <li><strong>Übereinstimmung und Genauigkeit können auseinandergehen.</strong> Hier liegt harmonium
+      4,4 Punkte vor Essentia, während beide gegenüber Menschen gleichauf liegen. Der Großteil dieses
+      Vorsprungs ist das Tongeschlecht (Dur oder Moll): ausgewogen schrumpft er auf 1 Punkt.</li>
+    <li><strong>Mixed In Key stimmt nicht einmal mit sich selbst überein.</strong> Die Versionen 8.5
+      und 11.1 geben bei jedem fünften Titel eine andere Tonart. Wer eine App mit „Mixed In Key“
+      vergleicht, sollte sagen, mit welcher Version.</li>
+  </ul>
+
+  <h3>Wenn harmonium sich irrt</h3>
+  <p>
+    Sechs bis acht von zehn falschen Antworten sind eine <strong>benachbarte Tonart</strong>: eine
+    Quinte entfernt, die Paralleltonart in Dur oder Moll, oder die Varianttonart (gleicher Grundton,
+    anderes Tongeschlecht) — die Tonarten direkt daneben auf dem Camelot-Rad, die sich oft trotzdem
+    mixen lassen. Gegenüber Mixed In Key 11.1 ist der Anteil bei allen Engines gleich, Mixed In Key
+    8.5 eingeschlossen.
+  </p>
+
+  <h2>Wie der Test durchgeführt wurde</h2>
+
+  <h3>Die Datensätze</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Datensatz</th><th class="n">Titel</th><th>Referenz</th><th>Bekannte Grenzen</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GiantSteps Key</td><td class="n">604</td>
+          <td>Menschliche Annotationen (Knees et al.), elektronische Tanzmusik</td>
+          <td>Nur EDM; 85 % in Moll; 28 seiner 93 Dur-Labels sind umstritten</td>
+        </tr>
+        <tr>
+          <td>FMAK, ein Teil davon</td><td class="n">1.485</td>
+          <td>Menschliche Annotationen (Wong &amp; Hernandez, ISMIR 2023, überarbeitete Labels), viele Genres, Creative-Commons-Audio</td>
+          <td>Nur die ersten 60 Sekunden sind annotiert; als atonal oder modal eingestufte Titel wurden aus dem Datensatz ausgeschlossen</td>
+        </tr>
+        <tr>
+          <td>Datensatz mit 50 Genres</td><td class="n">1.801</td>
+          <td>Die von Mixed In Key 11.1 geschriebene Tonart</td>
+          <td>Misst Übereinstimmung, nicht Genauigkeit; wurde nie für eine Entscheidung verwendet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Engines</h3>
+  <ul>
+    <li><strong>harmonium</strong> lief auf einem Desktop-Prüfstand, mit demselben Code wie die App
+      und ihren veröffentlichten Einstellungen — keine Variante, keine Abstimmung für den Test. Ein
+      Unterschied: Der Prüfstand wandelt jede Datei in 44,1 kHz um, die App liest sie in ihrer eigenen
+      Abtastrate.</li>
+    <li><strong>libKeyFinder 2.2.8</strong> und <strong>Essentia 2.1-beta5</strong> liefen unbeaufsichtigt
+      über ihre Kommandozeilenwerkzeuge, mit Standardeinstellungen. Für Essentia geben wir das Profil
+      <code>bgate</code> an, das bessere der beiden getesteten; das für EDM gedachte Profil
+      <code>edma</code> schnitt selbst auf GiantSteps schlechter ab.</li>
+    <li><strong>Mixed In Key 8.5 und 11.1</strong> sowie <strong>Queen Mary in Mixxx 2.5.6</strong>
+      wurden von Hand über ihre eigenen Oberflächen ausgeführt. Wir haben geprüft, dass libKeyFinder in
+      Mixxx bei 99,4 % der Titel dieselbe Antwort gibt wie unser Prüfstand.</li>
+  </ul>
+
+  <h3>Die Regeln</h3>
+  <ul>
+    <li><strong>Neutrale Kopien.</strong> Jede von Hand ausgeführte Engine erhielt Kopien ohne
+      jegliche Tags und mit unverändertem Audio, damit keine eine bereits in der Datei stehende Tonart
+      lesen konnte, statt sie zu analysieren.</li>
+    <li><strong>Strenge Wertung.</strong> Nur die exakte Tonart aus 24 zählt. Benachbarte Tonarten
+      werden getrennt gezählt und nie als halb richtig. Eine fehlende Antwort ist eine falsche
+      Antwort.</li>
+    <li><strong>Gepaarte Vergleiche.</strong> Zwei Engines werden Titel für Titel auf denselben
+      Dateien verglichen, und ein Abstand heißt nur dann Unterschied, wenn der gepaarte Test sagt,
+      dass er kein Rauschen ist.</li>
+    <li><strong>Getrennte Datensätze, nie zusammengezählt.</strong> Ein Mittelwert über EDM, gemischte
+      Genres und Übereinstimmung würde genau das verdecken, was ein DJ wissen muss.</li>
+    <li><strong>Zuerst die Vorhersagen.</strong> Was wir von jeder Messung erwarteten, wurde
+      aufgeschrieben, bevor wir sie lasen, und die verfehlten Vorhersagen bleiben dokumentiert.</li>
+  </ul>
+
+  <h3>Was wir offenlegen</h3>
+  <ul>
+    <li><strong>Kein Datensatz ist völlig „blind“.</strong> GiantSteps wurde in der frühen Entwicklung
+      von harmonium verwendet, und der oben gezeigte Teil von FMAK diente während der Entwicklung als
+      Kontrolle: Eine Änderung, die ihn verschlechterte, wurde nicht veröffentlicht. Einige frühe
+      Parameter wurden auf GiantSteps gewählt. Keiner der beiden ist ein Datensatz, den harmonium nie
+      gesehen hatte.</li>
+    <li><strong>Das Tonartmodell wurde an den Labels von Mixed In Key 8 angepasst</strong>, was
+      harmonium in der Übereinstimmungstabelle (oben) begünstigt.</li>
+    <li><strong>Weggelassene Datensätze.</strong> Wir veröffentlichen keine Ergebnisse zu GTZAN, einem
+      viel zitierten genreübergreifenden Datensatz: Wir halten seine Tonart-Annotationen nicht für
+      verlässlich genug, um Engines zu vergleichen.</li>
+    <li><strong>Die Mitbewerber liefen einmal</strong>, in den genannten Versionen. Sie laufen erneut,
+      wenn sich ihre Version ändert; harmonium wird bei jeder Veröffentlichung neu gemessen.</li>
+    <li><strong>Gemessen an harmonium 2.1</strong>, dessen Antworten mit denen von 2.1.1 identisch
+      sind.</li>
+  </ul>
+
+  <footer>
+    <p>
+      Mixed In Key ist eine Marke der Mixed In Key LLC. Essentia, libKeyFinder, Mixxx und die
+      Vamp-Plugins von Queen Mary sind Open-Source-Projekte ihrer jeweiligen Autoren. DJ Harmonic ist
+      eine unabhängige App und steht mit keinem von ihnen in Verbindung, noch wird sie von ihnen
+      unterstützt oder gesponsert. Die Ergebnisse beschreiben die auf dieser Seite genannten Versionen
+      auf den beschriebenen Datensätzen und können bei Ihrer Musik anders ausfallen.
+    </p>
+    <p><a href="de.html?lang=de">DJ Harmonic</a> · <a href="privacy-policy.html#de">Datenschutzerklärung</a></p>
+  </footer>
+
+</section>
+
+</main>
+
+<script>
+// Il selettore di lingua. La pagina si apre nella lingua del browser, a meno
+// che tu non ne abbia scelta un'altra: quella scelta e' l'unica cosa che il
+// sito scrive nel tuo browser, ed e' descritta nell'informativa.
+// Senza JavaScript restano visibili tutte e cinque le versioni — la pagina non
+// dipende da questo script per dire cio' che deve dire.
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.langs button');
+  var supported = ['en', 'it', 'fr', 'es', 'de'];
+  var STORE = 'djharmonic.lang';
+
+  // La memoria del browser puo' non esserci — navigazione privata, dati del
+  // sito bloccati — e allora si tira dritto sulla lingua del browser invece di
+  // piantarsi: e' una comodita', non un requisito.
+  function remembered() {
+    try {
+      var saved = localStorage.getItem(STORE);
+      return supported.indexOf(saved) >= 0 ? saved : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function remember(lang) {
+    try {
+      localStorage.setItem(STORE, lang);
+    } catch (error) {
+      // Niente da fare: la lingua resta scelta per questa visita soltanto.
+    }
+  }
+
+  // Le lingue affini sono le stesse di lib/l10n/app_locales.dart: a chi ha il
+  // telefono in portoghese lo spagnolo dice piu' dell'inglese, a un olandese il
+  // tedesco, a un romeno l'italiano. Le scandinave mancano di proposito: li'
+  // l'inglese e' compreso meglio del tedesco.
+  var affinity = {
+    pt: 'es', gl: 'es', ca: 'es', ast: 'es', an: 'es', ext: 'es', eu: 'es',
+    qu: 'es', gn: 'es', ay: 'es',
+
+    ro: 'it', co: 'it', sc: 'it', scn: 'it', nap: 'it', vec: 'it', lmo: 'it',
+    pms: 'it', lij: 'it', fur: 'it', lld: 'it', rm: 'it', mt: 'it',
+
+    oc: 'fr', br: 'fr', wa: 'fr', ht: 'fr', mg: 'fr', wo: 'fr', ln: 'fr',
+    rw: 'fr', sg: 'fr',
+
+    nl: 'de', af: 'de', fy: 'de', nds: 'de', lb: 'de', gsw: 'de', bar: 'de',
+    yi: 'de'
+  };
+
+  function show(lang) {
+    root.dataset.show = lang;
+    root.lang = lang;
+
+    buttons.forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.set === lang));
+    });
+  }
+
+  function code(tag) {
+    return String(tag || '').toLowerCase().split('-')[0];
+  }
+
+  // Come nell'app: si scorre l'elenco due volte, prima cercando una lingua che
+  // abbiamo davvero e solo poi accontentandosi dell'affinita'. Chi ha impostato
+  // olandese e poi inglese vuole l'inglese vero, non il tedesco affine alla sua
+  // prima scelta.
+  function fromBrowser() {
+    var wanted = navigator.languages || [navigator.language || 'en'];
+    var i;
+
+    for (i = 0; i < wanted.length; i++) {
+      if (supported.indexOf(code(wanted[i])) >= 0) return code(wanted[i]);
+    }
+
+    for (i = 0; i < wanted.length; i++) {
+      if (affinity[code(wanted[i])]) return affinity[code(wanted[i])];
+    }
+
+    return 'en';
+  }
+
+  // Solo il tocco sul selettore vale come scelta: il rilevamento automatico
+  // guarda e non scrive.
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      show(button.dataset.set);
+      remember(button.dataset.set);
+    });
+  });
+
+  // Nell'ordine: l'ancora, che e' una scelta esplicita di chi arriva con quel
+  // link; poi la lingua scelta in una visita precedente; infine quella del
+  // browser.
+  var hash = location.hash.replace('#', '');
+  show(supported.indexOf(hash) >= 0 ? hash : (remembered() || fromBrowser()));
+})();
+</script>
+
+</body>
+</html>
