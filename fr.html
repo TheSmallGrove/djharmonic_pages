@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DJ Harmonic — la roue de Camelot pour mixer en harmonie</title>
-<meta name="description" content="DJ Harmonic lit la tonalité d’un morceau et allume celles qui s’y accordent, sur une roue de Camelot qui se lit d’un coup d’œil. Six règles de mix, analyse rapide ou approfondie, téléphone et tablette. Tout sur votre appareil.">
+<meta name="description" content="DJ Harmonic lit la tonalité d’un morceau et allume celles qui s’y accordent, sur une roue de Camelot qui se lit d’un coup d’œil. Six règles de mix, analyse du morceau entier en quelques secondes, téléphone et tablette. Tout sur votre appareil.">
 <link rel="icon" href="assets/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="DJ Harmonic — la roue de Camelot pour mixer en harmonie">
-<meta property="og:description" content="Découvrez la tonalité d’un morceau et voyez ce qui s’y accorde. Six règles, deux notations, analyse rapide ou approfondie. Tout sur votre appareil.">
+<meta property="og:description" content="Découvrez la tonalité d’un morceau et voyez ce qui s’y accorde. Six règles, deux notations, analyse du morceau entier. Tout sur votre appareil.">
 <meta property="og:image" content="assets/icon.png">
 <meta name="theme-color" content="#100E14">
 
@@ -30,6 +30,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="32" height="32"> DJ Harmonic</a>
     <nav class="navlinks">
+      <a href="#engine">Le moteur</a>
       <a href="#how">Comment ça marche</a>
       <a href="#features">Fonctions</a>
       <a href="#mixing">Règles de mix</a>
@@ -88,8 +89,59 @@
 
     <div class="hero__device">
       <div class="phone">
-          <img src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic sur un téléphone : la roue de Camelot avec 12A choisie, les secteurs compatibles allumés et les autres en gris.">
+          <img src="assets/phone-track.png" width="540" height="1212" alt="Le panneau du morceau : code Camelot, nom de l’accord, métadonnées et, dessous, la forme d’onde avec les commandes de lecture.">
         </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ il motore ══════════════════════════ -->
+<section class="band" id="engine">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="eyebrow">le moteur</span>
+      <h2>harmonium 2.1.1, écrit pour cette app.</h2>
+      <p>La tonalité est trouvée par harmonium, un moteur de détection écrit de zéro pour DJ Harmonic. Il tourne sur le téléphone, sur le morceau entier, et répond en quelques secondes.</p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
+        <h3>Fait pour le téléphone</h3>
+        <p>Chaque étape a lieu sur l’appareil, sans serveur et sans connexion. Le morceau ne quitte jamais le téléphone, pas même pour être analysé.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <h3>Éprouvé sur des jeux de données reconnus</h3>
+        <p>Construit et vérifié sur près de 3&nbsp;900 morceaux de 50 genres, de l’EDM à l’opéra, avant d’arriver sur votre téléphone.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></div>
+        <h3>Le morceau entier, du début à la fin</h3>
+        <p>Intro, breaks et fin compris, pas une tranche prise au milieu. Une tonalité qui ne se révèle qu’à mi-morceau est entendue quand même.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-5M12 3v2.5"/></svg></div>
+        <h3>D’abord l’accordage</h3>
+        <p>Avant de chercher la tonalité, harmonium mesure l’accordage du morceau : un enregistrement un peu trop haut ou trop bas ne bascule pas dans la tonalité voisine.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+        <h3>Les percussions à l’écart</h3>
+        <p>La batterie a de l’énergie partout et aucune hauteur. harmonium la met de côté et écoute l’harmonie, avec un peu plus de poids sur la basse, où la tonalité s’appuie.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4.5V11h-6.5"/></svg></div>
+        <h3>Des tonalités toujours à jour</h3>
+        <p>Chaque tonalité garde la version qui l’a trouvée. Quand le moteur s’améliore, seuls les morceaux dont la réponse peut changer sont réanalysés. Les tonalités écrites par d’autres applications restent telles quelles.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -113,7 +165,7 @@
           </div>
           <div class="step__body">
             <h3>Donnez-lui un morceau</h3>
-            <p>Touchez le bouton au centre de la roue et choisissez un fichier sur l’appareil — mp3, m4a, wav ou flac. Dites ensuite si vous le voulez rapide, sur une partie du morceau, ou approfondi, sur la totalité. Un anneau décompte le travail pendant que la roue attend.</p>
+            <p>Touchez le bouton au centre de la roue et choisissez un fichier sur l’appareil — mp3, m4a, wav ou flac. Le morceau est lu en entier, en quelques secondes, pendant qu’un anneau décompte le travail et que la roue attend.</p>
           </div>
         </div>
 
@@ -124,7 +176,7 @@
           </div>
           <div class="step__body">
             <h3>Lisez la tonalité trouvée</h3>
-            <p>La roue se rallume sur le secteur où elle est tombée, cerné de rouge. Le panneau en dessous porte le code Camelot, le nom de l’accord et un repère disant laquelle des deux analyses y est arrivée — touchez la rapide et elle passe à l’approfondie sans tout reprendre.</p>
+            <p>La roue se rallume sur le secteur où elle est tombée, cerné de rouge. Le panneau en dessous porte le code Camelot et le nom de l’accord, et la tonalité est écrite dans les métadonnées du fichier : rouvrez le morceau, ici ou dans un autre logiciel, et elle y est déjà.</p>
           </div>
         </div>
 
@@ -144,7 +196,7 @@
 
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="Le panneau du morceau : code Camelot, nom de l’accord, repère d’analyse approfondie, métadonnées et règle de lecture.">
+          <img loading="lazy" src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic sur un téléphone : la roue de Camelot avec 12A choisie, les secteurs compatibles allumés et les autres en gris.">
         </div>
       </div>
     </div>
@@ -188,14 +240,14 @@
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 2.5 4.8 13.6H11l-.9 7.9 8.4-11.3H12z"/></svg></div>
-        <h3>Rapide ou approfondie, à vous de voir</h3>
-        <p>La rapide examine une partie du morceau et répond tout de suite ; l’approfondie l’examine en entier. Choisissez morceau par morceau, ou fixez-en une par défaut et la question disparaît.</p>
+        <h3>Le morceau entier, en quelques secondes</h3>
+        <p>Chaque analyse écoute le morceau entier, avec harmonium, le moteur de tonalité écrit de zéro pour cette app. Chaque tonalité retient la version qui l’a trouvée : un morceau n’est réanalysé que si la réponse peut changer.</p>
       </div>
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V4.5A1.5 1.5 0 0 1 4.5 3H12a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg></div>
-        <h3>Les métadonnées du morceau</h3>
-        <p>Titre, artiste, album, année et durée sortent du fichier lui-même. Quand elles manquent, le nom du fichier prend leur place : rien n’est inventé.</p>
+        <h3>Les métadonnées du morceau, à corriger</h3>
+        <p>Titre, artistes, album, genre, année et des dizaines d’autres sortent du fichier, et y retournent quand vous les corrigez, en mp3 comme en wav. Choisissez celles qu’affiche la fiche du morceau ; si elles manquent, le nom du fichier les remplace.</p>
       </div>
 
       <div class="card reveal">
@@ -206,8 +258,8 @@
 
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="1.6"/><path d="M7.5 8.5v3M12 8.5v4M16.5 8.5v3"/></svg></div>
-        <h3>Une règle pour les secondes</h3>
-        <p>Un ruban défile sur les secondes autour de vous. Faites-le glisser pour vous déplacer, ou sautez de dix secondes, au début ou à la fin.</p>
+        <h3>La forme d’onde, sous le doigt</h3>
+        <p>La forme d’onde du morceau défile pendant la lecture, et la partie déjà jouée prend la couleur. Faites-la glisser pour vous déplacer, ou sautez de dix secondes, au début ou à la fin.</p>
       </div>
 
       <div class="card reveal">
@@ -287,7 +339,7 @@
           <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="Le menu des règles ouvert sur ses six entrées, de toutes les compatibles à la tonalité compatible.">
         </div>
         <div class="phone">
-          <img loading="lazy" src="assets/phone-energy.png" width="540" height="1212" alt="La règle de montée et descente d’énergie : seules les tonalités qu’elle autorise restent allumées.">
+          <img loading="lazy" src="assets/phone-light.png" width="540" height="1212" alt="La règle de toutes les compatibles sur 2B : seules les tonalités qui se mixent restent allumées.">
         </div>
       </div>
     </div>
@@ -313,13 +365,13 @@
     <div class="devices">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic sur une tablette : la roue à gauche, le morceau avec ses métadonnées et sa règle à droite.">
+          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic sur une tablette : la roue à gauche avec la règle des adjacentes, le morceau et sa forme d’onde à droite.">
         </div>
         <p class="caption">Tablette — la roue à gauche, le morceau à droite</p>
       </div>
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-adjacent.png" width="540" height="1212" alt="La règle des tonalités adjacentes en codes Camelot, le morceau en lecture.">
+          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="La forme d’onde ouverte sous la roue, un repère par seconde, la partie déjà jouée en couleur.">
         </div>
         <p class="caption">Téléphone — la roue d’abord, le morceau dessous</p>
       </div>
@@ -328,9 +380,9 @@
     <div class="split2">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-energy.png" width="1120" height="700" alt="La disposition sur tablette avec la règle d’énergie et la roue en noms d’accords.">
+          <img loading="lazy" src="assets/tablet-light.png" width="1120" height="700" alt="La disposition sur tablette en thème clair, avec les métadonnées du morceau et sa forme d’onde.">
         </div>
-        <p class="caption">La même règle, avec la place de respirer</p>
+        <p class="caption">Le thème clair, avec la place de respirer</p>
       </div>
       <div class="reveal">
         <div class="tablet">
@@ -374,39 +426,39 @@
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-depth.png" width="540" height="1212" alt="La question posée avant l’analyse : rapide, sur une partie du morceau, ou approfondie, sur la totalité.">
+          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="Le panneau du morceau : code Camelot, nom de l’accord, métadonnées et, dessous, la forme d’onde avec les commandes de lecture.">
         </div>
-        <figcaption>Rapide ou approfondie, demandé une fois</figcaption>
+        <figcaption>Le morceau, sa tonalité et sa forme d’onde</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-progress.png" width="540" height="1212" alt="L’analyse en cours : la roue éteinte et un anneau qui compte le pourcentage dans le panneau du morceau.">
+          <img loading="lazy" src="assets/phone-light.png" width="540" height="1212" alt="Le même écran en thème clair.">
         </div>
-        <figcaption>L’anneau pendant le travail</figcaption>
+        <figcaption>Le thème clair</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track-fifths.png" width="540" height="1212" alt="Le même morceau avec la roue en noms d’accords.">
+          <img loading="lazy" src="assets/phone-tags.png" width="540" height="1212" alt="L’édition des métadonnées : titre, interprètes, album, année, genre et numéro de piste, avec Enregistrer et Annuler.">
         </div>
-        <figcaption>Le morceau, sa tonalité et ses métadonnées</figcaption>
+        <figcaption>Des métadonnées à corriger, enregistrées dans le fichier</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="Le morceau en lecture, la règle défilant sous la roue avec la règle des adjacentes activée.">
+          <img loading="lazy" src="assets/phone-all-tags.png" width="540" height="1212" alt="Toutes les métadonnées du morceau, par groupes, avec une punaise à côté de chacune pour la garder sur la fiche.">
         </div>
-        <figcaption>En lecture, la règle qui défile</figcaption>
+        <figcaption>Toutes les métadonnées, et celles que vous épinglez</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-italian.png" width="540" height="1212" alt="DJ Harmonic en italien, avec un morceau analysé en mode rapide.">
+          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="La forme d’onde ouverte sous la roue, un repère par seconde, la partie déjà jouée en couleur.">
         </div>
-        <figcaption>Ici en italien, l’une des cinq</figcaption>
+        <figcaption>La forme d’onde, ouverte</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Les réglages : langue, thème, notation de la roue et analyse par défaut.">
+          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Les réglages : langue, thème, notation de la roue, écriture des métadonnées dans le fichier et nouveautés de la version.">
         </div>
-        <figcaption>Langue, thème, notation, analyse</figcaption>
+        <figcaption>Langue, thème, notation, métadonnées</figcaption>
       </figure>
     </div>
   </div>
