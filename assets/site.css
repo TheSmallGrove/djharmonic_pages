@@ -434,17 +434,6 @@ footer .spacer { margin-left: auto; }
 .doc td { color: var(--muted); }
 .doc tr:last-child td { border-bottom: 0; }
 
-/* La pagina di harmonium: i numeri si leggono in colonna, quindi cifre a
-   larghezza fissa e allineate a destra; la riga di harmonium si distingue, ma
-   senza colore di vittoria — non vince ovunque, e la tabella deve poterlo dire. */
-.doc th.n, .doc td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.doc tr.ours td { color: var(--fg); background: rgba(108,75,212,.11); }
-.doc tr.ours td:first-child { font-weight: 600; }
-.doc td small { display: block; color: var(--dim); font-size: .8rem; line-height: 1.4; }
-.doc .table-note { font-size: .86rem; color: var(--dim); margin-top: -.6rem; }
-.topbar--doc .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
-.topbar--doc .back:hover { color: var(--fg); }
-
 .doc code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: .88em; color: var(--violet-lt);

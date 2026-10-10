@@ -94,6 +94,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="32" height="32"> DJ Harmonic</a>
     <nav class="navlinks">
+      <a href="#engine">The engine</a>
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#mixing">Mixing rules</a>
@@ -152,8 +153,59 @@
 
     <div class="hero__device">
       <div class="phone">
-          <img src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic on a phone: the Camelot wheel with 12A selected, the compatible sectors lit and the rest grey.">
+          <img src="assets/phone-track.png" width="540" height="1212" alt="The track panel: Camelot code, chord name, the tags and the waveform under them, with the playback controls.">
         </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ il motore ══════════════════════════ -->
+<section class="band" id="engine">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="eyebrow">the engine inside</span>
+      <h2>harmonium 2.1.1, written for this app.</h2>
+      <p>The key is found by harmonium, a key detection engine written from scratch for DJ Harmonic. It runs on the phone, on the whole track, and answers in seconds.</p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
+        <h3>Made for the phone</h3>
+        <p>Every step runs on the device, without a server and without a connection. The track never leaves the phone, not even to be analysed.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <h3>Tested on recognised datasets</h3>
+        <p>Built and checked on nearly 3,900 tracks across 50 genres, from EDM to opera, before it reached your phone.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></div>
+        <h3>The whole track, start to finish</h3>
+        <p>Intro, breaks and outro included, not a slice from the middle. A key that only shows itself halfway through is still heard.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-5M12 3v2.5"/></svg></div>
+        <h3>Tuning first</h3>
+        <p>Before looking for the key, harmonium measures how the track is tuned, so a recording a little sharp or flat is not pushed into the key next door.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+        <h3>Drums out of the way</h3>
+        <p>Percussion carries energy everywhere and no pitch. harmonium sets it aside and listens to the harmony, with a little extra weight on the bass, where the key is anchored.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4.5V11h-6.5"/></svg></div>
+        <h3>Keys that stay current</h3>
+        <p>Every key carries the version that found it. When the engine improves, only the tracks whose answer could change are analysed again. Keys written by other apps stay as they are.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -208,7 +260,7 @@
 
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="The track panel: Camelot code, chord name, the thorough mark, the tags and the playback ruler.">
+          <img loading="lazy" src="assets/phone-wheel.png" width="540" height="1212" alt="DJ Harmonic on a phone: the Camelot wheel with 12A selected, the compatible sectors lit and the rest grey.">
         </div>
       </div>
     </div>
@@ -253,7 +305,7 @@
       <div class="card reveal">
         <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 2.5 4.8 13.6H11l-.9 7.9 8.4-11.3H12z"/></svg></div>
         <h3>The whole track, in seconds</h3>
-        <p>Every analysis listens to the whole track, with <a href="harmonium.html#en">harmonium</a>, the key engine written from scratch for this app. Every key remembers which version found it, so a track is analysed again only when the answer could change.</p>
+        <p>Every analysis listens to the whole track, with harmonium, the key engine written from scratch for this app. Every key remembers which version found it, so a track is analysed again only when the answer could change.</p>
       </div>
 
       <div class="card reveal">
@@ -351,7 +403,7 @@
           <img loading="lazy" src="assets/phone-rules.png" width="540" height="1212" alt="The rule menu open on its six entries, from all compatible keys to compatible tone.">
         </div>
         <div class="phone">
-          <img loading="lazy" src="assets/phone-energy.png" width="540" height="1212" alt="The energy boost and lower rule: only the keys it allows stay lit.">
+          <img loading="lazy" src="assets/phone-light.png" width="540" height="1212" alt="The all compatible keys rule on 2B: only the keys that mix with it stay lit.">
         </div>
       </div>
     </div>
@@ -377,13 +429,13 @@
     <div class="devices">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic on a tablet: the wheel on the left, the track with its tags and ruler on the right.">
+          <img loading="lazy" src="assets/tablet-wheel.png" width="1120" height="700" alt="DJ Harmonic on a tablet: the wheel on the left with the adjacent keys rule, the track and its waveform on the right.">
         </div>
         <p class="caption">Tablet — the wheel on the left, the track on the right</p>
       </div>
       <div class="reveal">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-adjacent.png" width="540" height="1212" alt="The adjacent keys rule in Camelot codes, with the track playing.">
+          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="The waveform opened up under the wheel, one tick a second, the played part in colour.">
         </div>
         <p class="caption">Phone — the wheel first, the track underneath</p>
       </div>
@@ -392,9 +444,9 @@
     <div class="split2">
       <div class="reveal">
         <div class="tablet">
-          <img loading="lazy" src="assets/tablet-energy.png" width="1120" height="700" alt="The tablet layout with the energy rule and the wheel in chord names.">
+          <img loading="lazy" src="assets/tablet-light.png" width="1120" height="700" alt="The tablet layout in the light theme, with the track’s tags and waveform.">
         </div>
-        <p class="caption">The same rule, with room to breathe</p>
+        <p class="caption">The light theme, with room to breathe</p>
       </div>
       <div class="reveal">
         <div class="tablet">
@@ -438,33 +490,39 @@
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-progress.png" width="540" height="1212" alt="The analysis running: the wheel dimmed and a ring counting the percentage in the track panel.">
+          <img loading="lazy" src="assets/phone-track.png" width="540" height="1212" alt="The track panel: Camelot code, chord name, the tags and the waveform under them, with the playback controls.">
         </div>
-        <figcaption>The ring while it works</figcaption>
+        <figcaption>The track, its key and its waveform</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-track-fifths.png" width="540" height="1212" alt="The same track with the wheel in chord names.">
+          <img loading="lazy" src="assets/phone-light.png" width="540" height="1212" alt="The same screen in the light theme.">
         </div>
-        <figcaption>The track, its key and its tags</figcaption>
+        <figcaption>The light theme</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="The track playing, the ruler sliding under the wheel with the adjacent keys rule on.">
+          <img loading="lazy" src="assets/phone-tags.png" width="540" height="1212" alt="The tag editor: title, artists, album, year, genre and track number, with Save and Cancel.">
         </div>
-        <figcaption>Playing, with the ruler running</figcaption>
+        <figcaption>Fix the tags, saved into the file</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-italian.png" width="540" height="1212" alt="DJ Harmonic in Italian, with a track analysed the quick way.">
+          <img loading="lazy" src="assets/phone-all-tags.png" width="540" height="1212" alt="Every tag of the track, grouped, with a pin beside each one to keep it on the track card.">
         </div>
-        <figcaption>Here in Italian, one of the five</figcaption>
+        <figcaption>Every tag, and the ones you pin</figcaption>
       </figure>
       <figure class="shot">
         <div class="phone">
-          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Settings: language, theme, wheel notation and default analysis mode.">
+          <img loading="lazy" src="assets/phone-playing.png" width="540" height="1212" alt="The waveform opened up under the wheel, one tick a second, the played part in colour.">
         </div>
-        <figcaption>Language, theme, notation, analysis</figcaption>
+        <figcaption>The waveform, opened up</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone">
+          <img loading="lazy" src="assets/phone-settings.png" width="540" height="1212" alt="Settings: language, theme, wheel notation, writing tags into the file, and what’s new.">
+        </div>
+        <figcaption>Language, theme, notation, tags</figcaption>
       </figure>
     </div>
   </div>
@@ -495,7 +553,6 @@
   <div class="wrap">
     <span>© 2026 DJ Harmonic</span>
     <a href="privacy-policy.html#en">Privacy policy</a>
-    <a href="harmonium.html#en">The key engine</a>
     <a href="https://play.google.com/store/apps/details?id=com.Elite.Harmonic" target="_blank" rel="noopener">Google Play</a>
     <span class="spacer"></span>
     <span class="langrow">
